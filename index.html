@@ -70,22 +70,22 @@
         contact: {
             email: "yogeendra.r@gmail.com",
             phone: "+91 9902901078",
-            linkedin: "https://www.linkedin.com/in/your-profile-url" // Placeholder for actual LinkedIn URL
+            linkedin: "https://www.linkedin.com/in/yogeendrarao"
         },
         // --- UPDATED SKILLS CATEGORIZATION with Python Split out ---
         skills: {
-            java: "Java 17, Jersey, Spring/Spring Boot, Spring Cloud (Microservices), Helidon, Hibernate (JPA), Junit",
-            sql: "Oracle 19c, Azure SQL, MySQL, Influx DB",
-            bigData: "PySpark, Databricks, Spark SQL, Hadoop, Cascading, Pandas",
+            java: "Java 21, Jersey, Spring/Spring Boot, Spring Cloud (Microservices), Helidon, Hibernate (JPA), Junit",
+            sql: "Oracle 23ai, Azure SQL, MySQL",
+            bigData: "PySpark, Databricks, Spark SQL, Hadoop, Pandas",
             devOpsCloud: "Kubernetes (OKE, EKS), Docker, Terraform, Azure DevOps, GitHub/Gitlab, Jenkins, OCI (Functions, API Gateway, Load Balancer, OCI Streams, Alarms), AWS (EC2, S3, DynamoDB, Lambdas, VPC, CloudFormation)",
-            messaging: "Apache Kafka, Grafana, SonarQube, Confluence, Jira, Shell script, Postman, Swagger",
+            messaging: "Apache Kafka, Grafana, SonarQube, Confluence, Jira, Shell script, Postman, Swagger, Github Copilot, Cline(Oracle Code Assist)",
             python: "Flask, Requests, Beautiful Soup", // Dedicated Python Category
             javaScript: "React, AngularJS, jQuery, NodeJS, Bootstrap, Material Design", // Cleaned up
         },
         // Highlighted skills for the chip display - 'Python' added here
         highlightedSkills: [
-            "Java 17", "Python", "Spring Boot", "Microservices", "Oracle 19c", "Kubernetes", "Docker", "Terraform",
-            "PySpark", "Databricks", "OCI/AWS Cloud", "React","Kafka", "SonarQube", 
+            "Java 21", "Python", "Spring Boot", "Microservices", "Oracle DB 19c/23ai", "Kubernetes", "Terraform",
+            "Databricks", "OCI/AWS Cloud", "React","Kafka"
         ],
         experience: [
             {
@@ -308,7 +308,7 @@
                     <SkillCategory title="Cloud & DevOps (IaC, CI/CD, Containerization)" technologies={PROFILE_DATA.skills.devOpsCloud} />
                     <SkillCategory title="Big Data & Analytics" technologies={PROFILE_DATA.skills.bigData} />
                     <SkillCategory title="Python Ecosystem" technologies={PROFILE_DATA.skills.python} />
-                    <SkillCategory title="Messaging & Tools" technologies={PROFILE_DATA.skills.messaging} />
+                    <SkillCategory title="Messaging & Other Tools" technologies={PROFILE_DATA.skills.messaging} />
                     <SkillCategory title="JavaScript/Web" technologies={PROFILE_DATA.skills.javaScript} />
                 </div>
             </section>
@@ -510,7 +510,7 @@
                     bg-gray-200 dark:bg-gray-800
                     text-gray-500 dark:text-gray-500
                     border-gray-300 dark:border-gray-700">
-                    &copy; {new Date().getFullYear()} {PROFILE_DATA.name}. Built with React and Tailwind CSS.
+                    &copy; {new Date().getFullYear()} {PROFILE_DATA.name}.
                 </footer>
             </div>
         );
