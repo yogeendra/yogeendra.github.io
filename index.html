@@ -196,14 +196,14 @@
             },
         ],
         certifications: [
-            "Oracle Cloud Infrastructure 2024 Foundations Associate (1Z0-1085-24)",
-            "SAFe for Teams (5.1)",
-            "Microsoft Azure Fundamentals 2021 (AZ-900)",
-            "Microsoft Azure Data Fundamentals 2021 (DP-900)",
+            { name: "Oracle Cloud Infrastructure 2024 Foundations Associate (1Z0-1085-24)", link: "https://catalog-education.oracle.com/pls/certview/sharebadge?id=219EC2CC2E7EC01C7B0C5AD88BAE610D6983181D7E89B2B85EF21F04783C015F" },
+            { name: "SAFe for Teams (5.1)", link: "https://www.credly.com/badges/458c3652-181f-41f9-b78a-423ca13c561f" },
+            { name: "Microsoft Azure Fundamentals 2021 (AZ-900)", link: "https://www.credly.com/badges/22ca4e72-1669-4eb6-8140-6374fb8ee0f2" },
+            { name: "Microsoft Azure Data Fundamentals 2021 (DP-900)", link: "https://www.credly.com/badges/5f10a65a-0409-4cb6-ae59-1430395f5912" },
         ],
         awards: [
-            "STAR OF THE QUARTER AWARD - Q3-Oct - Dec 2020, Gainwell Technologies",
-            "Software Innovation Award - DXC technology",
+            { name: "STAR OF THE QUARTER AWARD - Q3-Oct - Dec 2020, Gainwell Technologies" },
+            { name: "Software Innovation Award - DXC technology" },
         ]
     };
 
@@ -485,31 +485,66 @@
                     ))}
                 </section>
 
-                {/* Certifications & Awards Section */}
+                {/* Certifications Section (Right column) */}
                 <section>
                     <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
-                        <Award size={24}/> Certifications & Awards
+                        <Award size={24}/> Certifications
                     </h2>
 
                     <div className="mb-6">
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Certifications</h3>
-                        <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 pl-4">
-                            {PROFILE_DATA.certifications.map((cert, index) => (
-                                <li key={index} className="text-sm p-2 rounded-lg bg-gray-100 dark:bg-gray-800">{cert}</li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Awards</h3>
-                        <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 pl-4">
-                            {PROFILE_DATA.awards.map((award, index) => (
-                                <li key={index} className="text-sm p-2 rounded-lg text-yellow-700 font-medium bg-gray-100 dark:bg-gray-800 dark:text-yellow-300">{award}</li>
-                            ))}
-                        </ul>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {PROFILE_DATA.certifications.map((cert, index) => {
+                                // support either string or { name, link }
+                                const name = typeof cert === 'string' ? cert : (cert.name || '');
+                                const link = cert && cert.link;
+                                return (
+                                    <div key={index} className="p-4 rounded-xl shadow-lg flex items-center justify-between
+                                        bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                                        <div className="flex items-center flex-1 min-w-0">
+                                            <div className="pl-0 flex-1 min-w-0">
+                                                <p className="text-sm font-medium text-gray-900 dark:text-white">{name}</p>
+                                            </div>
+                                        </div>
+                                        {link ? (
+                                            <a href={link} target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-700 ml-3 flex items-center">
+                                                <ExternalLink size={18}/>
+                                            </a>
+                                        ) : null}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </section>
             </div>
+
+            {/* Awards Section - separated from Certifications */}
+            <section className="mb-10">
+                <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                    <Award size={24}/> Awards
+                </h2>
+
+                <div className="grid grid-cols-1 gap-3">
+                    {PROFILE_DATA.awards.map((award, index) => {
+                        const name = typeof award === 'string' ? award : (award.name || '');
+                        const link = award && award.link;
+                        return (
+                            <div key={index} className="p-4 rounded-xl shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                                <div className="flex items-center flex-1 min-w-0">
+                                    <div className="pl-0 flex-1 min-w-0">
+                                        <div className="text-sm font-medium text-yellow-700 dark:text-yellow-300">{name}</div>
+                                    </div>
+                                </div>
+                                {link ? (
+                                    <a href={link} target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-700 ml-3 flex items-center">
+                                        <ExternalLink size={16}/>
+                                    </a>
+                                ) : null}
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
         </div>
     );
 
