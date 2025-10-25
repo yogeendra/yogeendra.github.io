@@ -91,7 +91,9 @@
             {
                 company: "Oracle (OFSS)",
                 designation: "Senior Applications Engineer",
-                duration: "July 2022 to Current (3 years 3 months)",
+                // Use start/end so duration can be calculated dynamically. empty end ("") means ongoing
+                start: "2022-07",
+                end: "",
                 details: [
                     {
                         project: '"SaaS Engine"',
@@ -116,7 +118,8 @@
             {
                 company: "Gainwell Technologies",
                 designation: "Professional 2 Product Developer",
-                duration: "Oct 2020 to July 2022 (1 year 9 months)",
+                start: "2020-10",
+                end: "2022-07",
                 details: [
                     {
                         project: "HEDIS - Healthcare Effectiveness Data and Information Set",
@@ -132,7 +135,8 @@
             {
                 company: "DXC Technology (Transferred to Gainwell Technology)",
                 designation: "Professional 1 System Development",
-                duration: "July 2016 to Sept 2020 (4 years 2 months)",
+                start: "2016-07",
+                end: "2020-09",
                 details: [
                     {
                         project: "Performance Assessment Service - Hong Kong Housing Authority",
@@ -170,7 +174,8 @@
             {
                 company: "Sunplus Solutions Pvt. Ltd.",
                 designation: "Software Engineer",
-                duration: "June 2014 to July 2016 (2 years 3 months)",
+                start: "2014-06",
+                end: "2016-07",
                 details: [
                     {
                         project: "Abu Dhabi Stock Exchange (Client)",
@@ -204,6 +209,67 @@
 
     // --- Components ---
 
+    /*
+     * Helpers to compute and format duration from a start and end (YYYY-MM or 'Current').
+     * - parseYearMonth: converts 'YYYY-MM' to a Date (first of month)
+     * - monthsBetween: returns total months between two dates
+     * - formatDurationRange: returns a friendly string like "Jul 2022 — Present (3 yrs 3 mos)"
+     */
+    const parseYearMonth = (ym) => {
+        if (!ym) return null;
+        if (ym.toLowerCase && ym.toLowerCase() === 'current') return new Date();
+        // Expecting format 'YYYY-MM' or 'YYYY-M'
+        const parts = ym.split('-');
+        if (parts.length >= 2) {
+            const y = parseInt(parts[0], 10);
+            const m = parseInt(parts[1], 10) - 1; // monthIndex
+            return new Date(y, m, 1);
+        }
+        // Try parsing a natural language date fallback
+        const d = new Date(ym);
+        return isNaN(d) ? null : d;
+    };
+
+    const monthsBetween = (startDate, endDate) => {
+        if (!startDate || !endDate) return 0;
+        const sy = startDate.getFullYear();
+        const sm = startDate.getMonth();
+        const ey = endDate.getFullYear();
+        const em = endDate.getMonth();
+        return (ey - sy) * 12 + (em - sm);
+    };
+
+    const formatMonthYear = (date) => {
+        if (!date) return '';
+        try {
+            return new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(date);
+        } catch (e) {
+            return date.toDateString();
+        }
+    };
+
+    const formatDurationRange = (start, end) => {
+        // Treat empty/falsy end or explicit 'Current' (case-insensitive) as ongoing (Present)
+        const isCurrent = !end || (end.toLowerCase && end.toLowerCase() === 'current');
+        const startDate = parseYearMonth(start);
+        const endDate = isCurrent ? new Date() : parseYearMonth(end);
+        if (!startDate) return '';
+
+        const totalMonths = monthsBetween(startDate, endDate || startDate);
+        const years = Math.floor(totalMonths / 12);
+        const months = totalMonths % 12;
+
+        const pieces = [];
+        if (years > 0) pieces.push(`${years} yr${years > 1 ? 's' : ''}`);
+        if (months > 0) pieces.push(`${months} mo${months > 1 ? 's' : ''}`);
+        const human = pieces.length ? pieces.join(' ') : 'Less than a month';
+
+        const startLabel = formatMonthYear(startDate);
+        const endLabel = isCurrent ? 'Present' : (endDate ? formatMonthYear(endDate) : '');
+
+        return endLabel ? `${startLabel} — ${endLabel} (${human})` : `${startLabel} (${human})`;
+    };
+
     /**
      * Renders a single skill category with its associated technologies.
      */
@@ -220,33 +286,89 @@
     /**
      * Renders a single job entry, including projects and tasks.
      */
-    const ExperienceEntry = ({ job }) => (
-        <div className="mb-8 p-6 rounded-xl shadow-lg transition duration-300
-            bg-white dark:bg-gray-800
-            dark:shadow-2xl hover:shadow-yellow-500/20 shadow-gray-300/50">
-            <div className="flex flex-col md:flex-row justify-between md:items-center border-b pb-3 mb-4
-                border-yellow-500/50 dark:border-yellow-500/30">
-                <h3 className="text-xl font-bold text-yellow-600 dark:text-yellow-400 leading-snug">{job.designation}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap mt-1 md:mt-0">{job.duration}</p>
-            </div>
-            <p className="text-lg font-medium text-gray-800 dark:text-white mb-4">{job.company}</p>
+    const ExperienceEntry = ({ job }) => {
+        const [open, setOpen] = React.useState(false);
+        const contentRef = React.useRef(null);
+        const chevronRef = React.useRef(null);
+        const range = formatDurationRange(job.start, job.end);
 
-            {job.details.map((detail, idx) => (
-                <div key={idx} className="mb-6 p-4 border-l-4 rounded-lg
-                    border-gray-400 dark:border-gray-600
-                    bg-gray-100/50 dark:bg-gray-700/50">
-                    <h4 className="text-md font-semibold text-gray-700 dark:text-gray-200 mb-2 italic">{detail.project}</h4>
-                    <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
-                        {detail.tasks.map((task, tIdx) => (
-                            <li key={tIdx} className="text-sm leading-relaxed">
-                                {task}
-                            </li>
-                        ))}
-                    </ul>
+        // Smooth measured height animation
+        React.useEffect(() => {
+            const el = contentRef.current;
+            if (!el) return;
+
+            // Ensure transitions are applied
+            el.style.transition = 'max-height 320ms cubic-bezier(.2,.8,.2,1), opacity 220ms ease';
+            el.style.overflow = 'hidden';
+
+            if (open) {
+                // from 0 to measured height
+                const target = el.scrollHeight + 'px';
+                el.style.maxHeight = target;
+                el.style.opacity = '1';
+                // rotate chevron
+                if (chevronRef.current) chevronRef.current.style.transform = 'rotate(90deg)';
+            } else {
+                // animate to 0
+                el.style.maxHeight = el.scrollHeight + 'px';
+                // force repaint to ensure transition
+                // eslint-disable-next-line no-unused-expressions
+                el.offsetHeight;
+                el.style.maxHeight = '0px';
+                el.style.opacity = '0';
+                if (chevronRef.current) chevronRef.current.style.transform = 'rotate(0deg)';
+            }
+        }, [open]);
+
+        return (
+            <div className="mb-8 p-6 rounded-xl shadow-lg transition duration-300
+                bg-white dark:bg-gray-800
+                dark:shadow-2xl hover:shadow-yellow-500/20 shadow-gray-300/50">
+
+                {/* Header: clickable area toggles expand/collapse */}
+                <button
+                    onClick={() => setOpen(prev => !prev)}
+                    aria-expanded={open}
+                    className="w-full text-left flex flex-col md:flex-row justify-between md:items-center border-b pb-3 mb-4
+                        border-yellow-500/50 dark:border-yellow-500/30 focus:outline-none">
+                    <div className="flex items-center gap-3">
+                        <span ref={chevronRef} className="inline-block transform transition-transform duration-200 rotate-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
+                        <h3 className="text-xl font-bold text-yellow-600 dark:text-yellow-400 leading-snug">{job.company}</h3>
+                    </div>
+
+                    <div className="flex items-center gap-4 mt-2 md:mt-0">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">{range}</p>
+                        <span className="sr-only">Toggle details</span>
+                    </div>
+                </button>
+
+                {/* Details container always present, animate height/opactiy for smoothness */}
+                <div
+                    ref={contentRef}
+                    style={{ maxHeight: '0px', opacity: 0 }}
+                >
+                    <p className="text-lg font-medium text-gray-800 dark:text-white mb-4">{job.designation}</p>
+
+                    {job.details.map((detail, idx) => (
+                        <div key={idx} className="mb-6 p-4 border-l-4 rounded-lg
+                            border-gray-400 dark:border-gray-600
+                            bg-gray-100/50 dark:bg-gray-700/50">
+                            <h4 className="text-md font-semibold text-gray-700 dark:text-gray-200 mb-2 italic">{detail.project}</h4>
+                            <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+                                {detail.tasks.map((task, tIdx) => (
+                                    <li key={tIdx} className="text-sm leading-relaxed">
+                                        {task}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
-    );
+            </div>
+        );
+    };
 
     /**
      * Resume View Component
