@@ -3,542 +3,718 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogeendra R Rao - Resume</title>
+    <title>Yogeendra Rao - Software Developer</title>
     <style>
-:root {
-  --color-white: rgba(255, 255, 255, 1);
-  --color-black: rgba(0, 0, 0, 1);
-  --color-cream-50: rgba(252, 252, 249, 1);
-  --color-cream-100: rgba(255, 255, 253, 1);
-  --color-gray-200: rgba(245, 245, 245, 1);
-  --color-gray-300: rgba(167, 169, 169, 1);
-  --color-gray-400: rgba(119, 124, 124, 1);
-  --color-slate-500: rgba(98, 108, 113, 1);
-  --color-brown-600: rgba(94, 82, 64, 1);
-  --color-charcoal-700: rgba(31, 33, 33, 1);
-  --color-charcoal-800: rgba(38, 40, 40, 1);
-  --color-slate-900: rgba(19, 52, 59, 1);
-  --color-teal-300: rgba(50, 184, 198, 1);
-  --color-teal-400: rgba(45, 166, 178, 1);
-  --color-teal-500: rgba(33, 128, 141, 1);
-  --color-teal-600: rgba(29, 116, 128, 1);
-  --color-teal-700: rgba(26, 104, 115, 1);
-  --color-brown-600-rgb: 94, 82, 64;
-  --color-teal-500-rgb: 33, 128, 141;
-  --color-slate-900-rgb: 19, 52, 59;
-  --color-background: var(--color-cream-50);
-  --color-surface: var(--color-cream-100);
-  --color-text: var(--color-slate-900);
-  --color-text-secondary: var(--color-slate-500);
-  --color-primary: var(--color-teal-500);
-  --color-primary-hover: var(--color-teal-600);
-  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
-  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-size-xs: 11px;
-  --font-size-sm: 12px;
-  --font-size-base: 14px;
-  --font-size-lg: 16px;
-  --font-size-xl: 18px;
-  --font-size-2xl: 20px;
-  --font-size-3xl: 24px;
-  --font-size-4xl: 30px;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 550;
-  --font-weight-bold: 600;
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --space-4: 4px;
-  --space-6: 6px;
-  --space-8: 8px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-20: 20px;
-  --space-24: 24px;
-  --space-32: 32px;
-  --space-40: 40px;
-  --radius-base: 8px;
-  --radius-lg: 12px;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-}
+        :root {
+            --color-primary: #20B2AA;
+            --color-primary-dark: #1a8f89;
+            --color-accent: #FF6B6B;
+            --color-text: #2d3748;
+            --color-text-light: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-bg-card: #ffffff;
+            --color-border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-gray-400-rgb: 119, 124, 124;
-    --color-teal-300-rgb: 50, 184, 198;
-    --color-gray-300-rgb: 167, 169, 169;
-    --color-gray-200-rgb: 245, 245, 245;
-    --color-background: var(--color-charcoal-700);
-    --color-surface: var(--color-charcoal-800);
-    --color-text: var(--color-gray-200);
-    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
-    --color-primary: var(--color-teal-300);
-    --color-primary-hover: var(--color-teal-400);
-    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
-    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
-  }
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: linear-gradient(to bottom right, #f7fafc 0%, #edf2f7 100%);
+            min-height: 100vh;
+        }
 
-body {
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  -webkit-font-smoothing: antialiased;
-}
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: var(--color-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--space-40) var(--space-20);
-}
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-.header {
-  text-align: center;
-  margin-bottom: var(--space-40);
-  padding-bottom: var(--space-32);
-  border-bottom: 2px solid var(--color-border);
-}
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.3;
+        }
 
-.header h1 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--space-8);
-  color: var(--color-text);
-}
+        header .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-.header .title {
-  font-size: var(--font-size-xl);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--space-16);
-}
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
 
-.contact-info {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-16);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
 
-.contact-info a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.2s;
-}
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            font-size: 0.95rem;
+        }
 
-.contact-info a:hover {
-  color: var(--color-primary-hover);
-}
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
 
-.section {
-  margin-bottom: var(--space-40);
-}
+        .contact-info a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
 
-.section-title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text);
-  margin-bottom: var(--space-20);
-  padding-bottom: var(--space-8);
-  border-bottom: 1px solid var(--color-border);
-}
+        .content {
+            padding: 3rem 2.5rem;
+        }
 
-.summary {
-  font-size: var(--font-size-lg);
-  line-height: 1.6;
-  color: var(--color-text-secondary);
-}
+        section {
+            margin-bottom: 4rem;
+        }
 
-.experience-item,
-.education-item,
-.project-item {
-  margin-bottom: var(--space-24);
-  padding: var(--space-20);
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-card-border);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
+        section h2 {
+            font-size: 2rem;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-.experience-item:hover,
-.education-item:hover,
-.project-item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
+        section h2::before {
+            content: '';
+            width: 4px;
+            height: 32px;
+            background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+            border-radius: 2px;
+        }
 
-.item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--space-12);
-  flex-wrap: wrap;
-  gap: var(--space-8);
-}
+        .summary {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--color-text);
+            background: var(--color-bg-alt);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+        }
 
-.item-title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text);
-}
+        .summary strong {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
 
-.item-company {
-  font-size: var(--font-size-base);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-medium);
-}
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
 
-.item-date {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  white-space: nowrap;
-}
+        .skill-category {
+            background: var(--color-bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-.item-description {
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-}
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
 
-.item-description ul {
-  margin-left: var(--space-20);
-  margin-top: var(--space-8);
-}
+        .skill-category:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
 
-.item-description li {
-  margin-bottom: var(--space-6);
-}
+        .skill-category:hover::before {
+            transform: scaleY(1);
+        }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-20);
-}
+        .skill-category h3 {
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.skill-category {
-  background: var(--color-surface);
-  padding: var(--space-20);
-  border-radius: var(--radius-base);
-  border: 1px solid var(--color-card-border);
-}
+        .skill-category h3::after {
+            content: '→';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: var(--color-accent);
+        }
 
-.skill-category h3 {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-  margin-bottom: var(--space-12);
-}
+        .skill-category:hover h3::after {
+            opacity: 1;
+        }
 
-.skill-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-}
+        .skill-category p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
 
-.skill-tag {
-  display: inline-block;
-  padding: var(--space-6) var(--space-12);
-  background: rgba(var(--color-teal-500-rgb), 0.1);
-  color: var(--color-text);
-  border-radius: 20px;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  border: 1px solid rgba(var(--color-teal-500-rgb), 0.2);
-}
+        .experience-item, .project-item {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--color-bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-.interests-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-12);
-}
+        .experience-item:hover, .project-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
 
-.interest-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-  padding: var(--space-12) var(--space-16);
-  background: var(--color-surface);
-  border-radius: var(--radius-base);
-  border: 1px solid var(--color-card-border);
-  font-size: var(--font-size-sm);
-}
+        .experience-item::before, .project-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+            border-radius: 12px 0 0 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.interest-icon {
-  font-size: var(--font-size-lg);
-}
+        .experience-item:hover::before, .project-item:hover::before {
+            opacity: 1;
+        }
 
-@media (max-width: 768px) {
-  .container {
-    padding: var(--space-24) var(--space-16);
-  }
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
 
-  .header h1 {
-    font-size: var(--font-size-3xl);
-  }
+        .experience-header h3 {
+            font-size: 1.4rem;
+            color: var(--color-text);
+            font-weight: 700;
+        }
 
-  .contact-info {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-8);
-  }
+        .experience-header .duration {
+            color: var(--color-text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+            background: var(--color-bg-alt);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
 
-  .item-header {
-    flex-direction: column;
-  }
+        .experience-header .role {
+            font-size: 1.05rem;
+            color: var(--color-primary);
+            font-weight: 600;
+            width: 100%;
+        }
 
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-}
+        .experience-item ul, .project-item ul {
+            list-style: none;
+            margin-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
 
-@media print {
-  body {
-    background: white;
-  }
+        .experience-item li, .project-item li {
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
 
-  .container {
-    max-width: 100%;
-    padding: 20px;
-  }
+        .experience-item li::before, .project-item li::before {
+            content: "●";
+            position: absolute;
+            left: 0.5rem;
+            color: var(--color-primary);
+            font-size: 0.6rem;
+            top: 0.6rem;
+        }
 
-  .experience-item,
-  .education-item,
-  .project-item,
-  .skill-category {
-    page-break-inside: avoid;
-    box-shadow: none;
-    border: 1px solid #ddd;
-  }
+        .project-header {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-}
+        .project-header h3 {
+            font-size: 1.3rem;
+            color: var(--color-text);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
 
-@font-face {
-  font-family: 'FKGroteskNeue';
-  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
-}
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .project-meta .role {
+            color: var(--color-text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .project-meta .duration {
+            color: var(--color-text-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: var(--color-bg-alt);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .education-item, .cert-item, .award-item {
+            padding: 1.5rem;
+            background: var(--color-bg-card);
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-item:hover, .cert-item:hover, .award-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        .education-item::before, .cert-item::before, .award-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .education-item:hover::before, .cert-item:hover::before, .award-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .education-item h3, .cert-item h3, .award-item h3 {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p, .cert-item p, .award-item p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cert-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .cert-item a:hover {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--color-text) 0%, #1a202c 100%);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            header {
+                padding: 3rem 1.5rem 2.5rem;
+            }
+
+            header h1 {
+                font-size: 2.25rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .content {
+                padding: 2rem 1.5rem;
+            }
+
+            section {
+                margin-bottom: 3rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .experience-item, .project-item {
+                padding: 1.5rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            header {
+                background: var(--color-primary);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <h1>Yogeendra R Rao</h1>
-            <div class="title">Technology Professional | Database Developer | Java Developer</div>
-            <div class="contact-info">
-                <span>📍 Bengaluru, Karnataka, India</span>
-                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <a href="mailto:yogeendra.r@gmail.com">yogeendra.r@gmail.com</a></span>
-                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> <a href="https://www.linkedin.com/in/yogeendrarao/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
-                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> <a href="https://github.com/yogeendra" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+        <header>
+            <div class="header-content">
+                <h1>Yogeendra Rao</h1>
+                <p>Progressive Software Developer | 10+ Years Experience</p>
+                <div class="contact-info">
+                <a href="mailto:yogeendra.r@gmail.com">
+                    <span>✉</span> yogeendra.r@gmail.com
+                </a>
+                <a href="tel:+919902901078">
+                    <span>📱</span> +91 9902901078
+                </a>
+                <a href="http://www.linkedin.com/in/yogeendrarao" target="_blank" rel="noopener noreferrer">
+                    <span>🔗</span> LinkedIn
+                </a>
+                </div>
             </div>
         </header>
 
-        <section class="section">
-            <h2 class="section-title">Professional Summary</h2>
-            <p class="summary">
-                Technology professional with expertise in database development, Java programming, and cloud infrastructure. Proven track record in Oracle SQL development, OCR implementation, infrastructure automation with Terraform, and generative AI integration. Strong analytical skills with experience in building scalable applications and implementing modern DevOps practices. Deep interest in financial technology and continuous learning through reading technical books and documentation.
-            </p>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Professional Experience</h2>
-            
-            <div class="experience-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Java Application Developer</div>
-                        <div class="item-company">Technology Projects</div>
-                    </div>
-                    <div class="item-date">Recent</div>
+        <div class="content">
+            <section>
+                <h2>Professional Summary</h2>
+                <div class="summary">
+                    Progressive Software Developer with <strong>10+ years</strong> of experience in design, developing software solutions for client and server applications based on current and expected demands. Works effectively in high-pressure environments to meet challenging design standards and schedule targets. Expert in programming languages, design and operations tools. Proven experience working with deadlines and interruptions.
                 </div>
-                <div class="item-description">
+            </section>
+
+            <section>
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Java</h3>
+                        <p>Java 17, Jersey, Spring/Spring Boot, Spring Cloud (Microservices), Helidon, Hibernate (JPA), Junit</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>SQL</h3>
+                        <p>Oracle 19c, Azure SQL, MySQL, Inflex DB, Spark SQL</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Python</h3>
+                        <p>Flask, Pandas, Requests, Beautiful Soup, PySpark</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>JavaScript</h3>
+                        <p>React, AngularJS, jQuery, NodeJS</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>OCI</h3>
+                        <p>OKE, Functions, API Gateway, Load Balancer, OCI Streams, Alarms</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AWS</h3>
+                        <p>EC2, S3, DynamoDB, Lambdas, VPC, Databricks, CloudFormation, EKS</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>DevOps</h3>
+                        <p>GitHub/Gitlab, Grafana, Kubernetes, SonarQube, Jira, Azure DevOps, Jenkins</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Other</h3>
+                        <p>Shell script, Docker, Terraform, Apache Kafka, Swagger, Postman, Confluence, Bootstrap, Material Design</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Oracle (OFSS)</h3>
+                            <div class="role">Senior Applications Engineer</div>
+                        </div>
+                        <div class="duration">July 2022 - Present (2 years 6 months)</div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Gainwell Technologies</h3>
+                            <div class="role">Professional 2 Product Developer</div>
+                        </div>
+                        <div class="duration">Oct 2020 - July 2022 (1 year 9 months)</div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>DXC Technology</h3>
+                            <div class="role">Professional 1 System Development</div>
+                        </div>
+                        <div class="duration">July 2016 - Sept 2020 (4 years 2 months)</div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Sunplus Solutions</h3>
+                            <div class="role">Software Engineer</div>
+                        </div>
+                        <div class="duration">May 2014 - July 2016 (2 years 3 months)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Key Projects</h2>
+                
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>SaaS Engine</h3>
+                        <div class="project-meta">
+                            <span class="role">Senior Applications Engineer, Oracle, Bangalore</span>
+                            <span class="duration">April 2023 - Current</span>
+                        </div>
+                    </div>
                     <ul>
-                        <li>Developed Java OCR application using Tesseract and Tess4J library for text extraction from images</li>
-                        <li>Implemented image processing solutions to convert scanned documents into searchable text formats</li>
-                        <li>Explored Generative AI integration in Java applications using Spring AI framework</li>
-                        <li>Built RESTful APIs using Spring Boot for enterprise application development</li>
-                        <li>Contributed to open-source projects focused on Java and AI technologies</li>
+                        <li>Developed APIs in common resource services using Jersey and Oracle Autonomous JSON Database</li>
+                        <li>Worked on integrating Oracle Process Modeling Framework (PMF) with SaaS Apps using Oracle Streams</li>
+                        <li>Streamlined the customer onboarding pipeline using GitLab Pipeline</li>
+                        <li>Worked on Terraforms to configure the OCI API Gateway and load balancers</li>
+                        <li>Used Open API library to create swagger documents for different resources created dynamically using JSON Schema</li>
+                        <li>Designed, developed, and maintained clean code</li>
+                        <li>Daily standup meeting with product owner with day-by-day development update using Jira</li>
                     </ul>
                 </div>
-            </div>
 
-            <div class="experience-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Database Developer</div>
-                        <div class="item-company">Technology Sector</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>ERF Platform - Configuration Registry</h3>
+                        <div class="project-meta">
+                            <span class="role">Senior Applications Engineer, Oracle, Bangalore</span>
+                            <span class="duration">July 2022 - March 2023</span>
+                        </div>
                     </div>
-                    <div class="item-date">Previous Experience</div>
-                </div>
-                <div class="item-description">
                     <ul>
-                        <li>Developed and optimized complex Oracle SQL queries for enterprise database systems</li>
-                        <li>Implemented database solutions using Oracle DBMS_LOB functions for large object handling</li>
-                        <li>Created efficient data retrieval and manipulation procedures to improve system performance</li>
-                        <li>Collaborated with cross-functional teams to design database architecture and optimize workflows</li>
-                        <li>Maintained data integrity and implemented backup and recovery procedures</li>
+                        <li>Design and developed the Platform registry which stores resource details and mapped to customer</li>
+                        <li>Used Jersey and Oracle Autonomous Database to implement this requirement</li>
+                        <li>Documented APIs using Open API 3.0</li>
+                        <li>Deployed to Kubernetes (OKE) cluster using GitLab pipeline</li>
+                        <li>Designed, developed, and maintained clean code. Performed static scans using Sonar and Fortify</li>
+                        <li>Daily standup meeting with product owner with day-by-day development update tracked using Jira</li>
                     </ul>
                 </div>
-            </div>
 
-            <div class="experience-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">DevOps & Infrastructure Engineer</div>
-                        <div class="item-company">Cloud Infrastructure Projects</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>HEDIS - Healthcare Effectiveness Data and Information Set</h3>
+                        <div class="project-meta">
+                            <span class="role">Professional 2 Product Developer, Gainwell Technologies, Bangalore</span>
+                            <span class="duration">April 2020 - July 2022</span>
+                        </div>
                     </div>
-                    <div class="item-date">Recent</div>
-                </div>
-                <div class="item-description">
                     <ul>
-                        <li>Implemented Infrastructure as Code (IaC) using Terraform for AWS cloud deployments</li>
-                        <li>Deployed scalable WordPress applications on AWS with EC2, RDS, and EFS integration</li>
-                        <li>Designed and implemented multi-tier cloud architectures with public and private subnets</li>
-                        <li>Created automated deployment pipelines for web applications and databases</li>
-                        <li>Managed cloud resources including compute instances, storage, and networking components</li>
+                        <li>Understanding HEDIS Technical Specifications and translating it to code, Health Plan Certification, and guiding team members</li>
+                        <li>Worked on Lakehouse architecture, Spark SQL, PySpark and Databricks Notebook to build the measures</li>
+                        <li>Created APIs using Apache Kafka, Spring Boot and Spring Cloud (Microservices)</li>
+                        <li>Migrating SQL and python scripts to Databricks</li>
+                        <li>Designed, developed, and maintained clean code</li>
+                        <li>Daily standup meeting with product owner with day-by-day development update tracked using Azure DevOps</li>
                     </ul>
                 </div>
-            </div>
-        </section>
 
-        <section class="section">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Database & Backend</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Oracle SQL</span>
-                        <span class="skill-tag">DBMS_LOB</span>
-                        <span class="skill-tag">Query Optimization</span>
-                        <span class="skill-tag">Database Design</span>
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>Performance Assessment Service - Hong Kong Housing Authority</h3>
+                        <div class="project-meta">
+                            <span class="role">Professional 1 System Development, DXC Technology</span>
+                            <span class="duration">August 2018 - April 2020</span>
+                        </div>
                     </div>
+                    <ul>
+                        <li>Gathering requirements, analyzing business needs, executing using DevOps applications life cycle to develop using Microservices and implement streamlined technology solutions</li>
+                        <li>Writing Object-Oriented, server-side web application development using Java, Spring boot, Spring MVC, Spring Cloud, Oracle DB, AngularJS, GitLab</li>
+                        <li>Onsite development and coordinating with customer on the requirement</li>
+                        <li>Daily Standup meeting with customer with day-to-day development update</li>
+                        <li>Migrated EMC ECS object storage from IBM content manager</li>
+                    </ul>
                 </div>
 
-                <div class="skill-category">
-                    <h3>Web Technologies</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">DNS/CDN</span>
-                        <span class="skill-tag">Web Architecture</span>
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>Intelligent Self-Service Project</h3>
+                        <div class="project-meta">
+                            <span class="role">Service Information Developer I, DXC Technology, Bangalore</span>
+                            <span class="duration">April 2017 - August 2018</span>
+                        </div>
                     </div>
+                    <ul>
+                        <li>Build a ticket search and analysis tool using Stanford CoreNLP, Spring Boot and AngularJS</li>
+                        <li>Worked on KPI dashboards for Retail customer using Grafana and InfluxDB</li>
+                        <li>Developed chat bot custom hook using different NLU engine (e-commerce bot and operations bot) and build intent fulfillments plugins like database/RPA/web service</li>
+                    </ul>
                 </div>
+            </section>
 
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Shell Scripting</span>
-                    </div>
+            <section>
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>Bachelor of Engineering (BE) - Information Science &amp; Engineering</h3>
+                    <p>Visvesvaraya Technological University, Bangalore, India | September 2012</p>
                 </div>
+            </section>
 
-                <div class="skill-category">
-                    <h3>DevOps & Cloud</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">AWS (EC2, RDS, EFS)</span>
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">CI/CD</span>
-                    </div>
+            <section>
+                <h2>Certifications</h2>
+                <div class="cert-item">
+                    <h3><a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=219EC2CC2E7EC01C7B0C5AD88BAE610D6983181D7E89B2B85EF21F04783C015F" target="_blank" rel="noopener noreferrer">Oracle Cloud Infrastructure 2024 Foundations Associate (1Z0-1085-24)</a></h3>
                 </div>
-            </div>
-        </section>
+                <div class="cert-item">
+                    <h3><a href="https://www.credly.com/badges/458c3652-181f-41f9-b78a-423ca13c561f" target="_blank" rel="noopener noreferrer">SAFe for Teams (5.1)</a></h3>
+                </div>
+                <div class="cert-item">
+                    <h3><a href="https://www.credly.com/go/Z8qHAyM7GTTazB3E1fyLQw" target="_blank" rel="noopener noreferrer">Microsoft Azure Fundamentals 2021 (AZ-900)</a></h3>
+                </div>
+                <div class="cert-item">
+                    <h3><a href="https://www.credly.com/badges/5f10a65a-0409-4cb6-ae59-1430395f5912" target="_blank" rel="noopener noreferrer">Microsoft Azure Data Fundamentals 2021 (DP-900)</a></h3>
+                </div>
+            </section>
 
-        <section class="section">
-            <h2 class="section-title">Key Projects</h2>
-            
-            <div class="project-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">TesseractExample - Java OCR Application</div>
-                    </div>
-                    <div class="item-date">GitHub Repository</div>
+            <section>
+                <h2>Awards</h2>
+                <div class="award-item">
+                    <h3>STAR OF THE QUARTER AWARD</h3>
+                    <p>Q3-Oct - Dec 2020, Gainwell Technologies</p>
                 </div>
-                <div class="item-description">
-                    Developed Java application using Tesseract OCR engine and Tess4J JNI wrapper for optical character recognition. Implemented image-to-text conversion functionality for processing scanned documents and extracting text from images. Utilized Maven for dependency management and demonstrated practical implementation of OCR technology in Java environment.
+                <div class="award-item">
+                    <h3>Software Innovation Award</h3>
+                    <p>DXC Technology</p>
                 </div>
-            </div>
+            </section>
+        </div>
 
-            <div class="project-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Terraform WordPress Deployment on AWS</div>
-                    </div>
-                    <div class="item-date">Infrastructure Project</div>
-                </div>
-                <div class="item-description">
-                    Implemented Infrastructure as Code solution using Terraform to deploy WordPress on AWS cloud platform. Created multi-tier architecture with EC2 instances in public subnets and RDS database in private subnets. Configured security groups, networking, and automated deployment scripts for scalable web application hosting.
-                </div>
-            </div>
-
-            <div class="project-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Generative AI for Java Beginners</div>
-                    </div>
-                    <div class="item-date">Learning Project</div>
-                </div>
-                <div class="item-description">
-                    Explored Microsoft's Generative AI for Java beginners course, learning fundamentals of integrating Large Language Models (LLMs) into Java applications. Studied concepts including tokens, embeddings, and Spring AI framework integration. Hands-on experience with building AI-powered Java applications and understanding the Java AI ecosystem.
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Interests & Professional Development</h2>
-            <div class="interests-list">
-                <div class="interest-item">
-                    <span class="interest-icon">📈</span>
-                    <span>Financial Markets & Investment Analysis</span>
-                </div>
-                <div class="interest-item">
-                    <span class="interest-icon">📚</span>
-                    <span>Self-Improvement Literature</span>
-                </div>
-                <div class="interest-item">
-                    <span class="interest-icon">🎯</span>
-                    <span>Productivity & Time Management</span>
-                </div>
-                <div class="interest-item">
-                    <span class="interest-icon">💻</span>
-                    <span>Technology & Automation</span>
-                </div>
-                <div class="interest-item">
-                    <span class="interest-icon">☁️</span>
-                    <span>Cloud Computing & DevOps</span>
-                </div>
-                <div class="interest-item">
-                    <span class="interest-icon">🤖</span>
-                    <span>Artificial Intelligence & ML</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Notable Reading</h2>
-            <div class="item-description">
-                <ul>
-                    <li><strong>Eat That Frog</strong> by Brian Tracy - Task prioritization and productivity</li>
-                    <li><strong>Master Your Mindset</strong> - Personal development and mental frameworks</li>
-                    <li><strong>I Will Teach You to Be Rich</strong> - Personal finance and investment strategies</li>
-                    <li><strong>How to Finish Everything You Start</strong> - Project completion and focus management</li>
-                </ul>
-            </div>
-        </section>
+        <footer>
+            <p>&copy; 2025 Yogeendra Rao. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>
