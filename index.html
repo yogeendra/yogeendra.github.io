@@ -38,8 +38,8 @@
     <!-- Load React and React DOM -->
     <!-- IMPORTANT: Ensure React 18 is loaded -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <!-- FIX: Added missing ReactDOM library which was causing the 'ReactDOM is not defined' error -->
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Load Babel for JSX and ES6 support (essential for the single-file setup) -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <!-- React App Script -->
@@ -58,6 +58,7 @@
     const GraduationCap = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 10v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6"/><path d="M6 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2"/><path d="M12 2a4 4 0 0 0-4 4v2"/><path d="M12 2a4 4 0 0 1 4 4v2"/></svg>;
     const Sun = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>;
     const Moon = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>;
+    const Cpu = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/><path d="M6 2v2"/><path d="M10 2v2"/><path d="M14 2v2"/><path d="M18 2v2"/><path d="M6 20v2"/><path d="M10 20v2"/><path d="M14 20v2"/><path d="M18 20v2"/><path d="M2 6h2"/><path d="M20 6h2"/><path d="M2 10h2"/><path d="M20 10h2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M2 18h2"/><path d="M20 18h2"/></svg>;
 
 
     // --- Data Extracted from Resume Document ---
@@ -65,29 +66,32 @@
     const PROFILE_DATA = {
         name: "Yogeendra Rao",
         title: "Senior Software Developer",
-        // UPDATED PROFESSIONAL SUMMARY using Option 2
         summary: "Senior Backend Developer with a decade of expertise in building robust, high-availability server applications, specializing in the Java/Microservices (Spring/Jersey) stack and Oracle/Azure SQL databases. Combines core development proficiency with experience in Big Data tools (PySpark, Databricks) for complex data processing and reporting. Extensive experience in modern DevOps practices, including GitHub/Gitlab CI/CD, Docker, and Kubernetes, ensuring code quality via SonarQube and delivering performant solutions in high-compliance sectors like Healthcare and Financial Services.",
         contact: {
             email: "yogeendra.r@gmail.com",
             phone: "+91 9902901078",
             linkedin: "https://www.linkedin.com/in/your-profile-url" // Placeholder for actual LinkedIn URL
         },
+        // --- UPDATED SKILLS CATEGORIZATION with Python Split out ---
         skills: {
             java: "Java 17, Jersey, Spring/Spring Boot, Spring Cloud (Microservices), Helidon, Hibernate (JPA), Junit",
-            sql: "Oracle 19c, Azure SQL, MySQL, Inflex DB, Spark SQL",
-            python: "Flask, Pandas, Requests, Beautiful Soup, PySpark",
-            javaScript: "React, AngularJS, jQuery, NodeJS",
-            oci: "OKE, Functions, API Gateway, Load Balancer, OCI Streams, Alarms",
-            aws: "EC2, S3, DynamoDB, Lambdas, VPC, Databricks, CloudFormation, EKS",
-            devOps: "GitHub/Gitlab, Grafana, Kubernetes, SonarQube, Jira, Azure DevOps, Jenkins",
-            ux: "Bootstrap, Material Design",
-            other: "Shell script, Docker, Terraform, Apache Kafka, Swagger, Postman, Confluence",
+            sql: "Oracle 19c, Azure SQL, MySQL, Influx DB",
+            bigData: "PySpark, Databricks, Spark SQL, Hadoop, Cascading, Pandas",
+            devOpsCloud: "Kubernetes (OKE, EKS), Docker, Terraform, Azure DevOps, GitHub/Gitlab, Jenkins, OCI (Functions, API Gateway, Load Balancer, OCI Streams, Alarms), AWS (EC2, S3, DynamoDB, Lambdas, VPC, CloudFormation)",
+            messaging: "Apache Kafka, Grafana, SonarQube, Confluence, Jira, Shell script, Postman, Swagger",
+            python: "Flask, Requests, Beautiful Soup", // Dedicated Python Category
+            javaScript: "React, AngularJS, jQuery, NodeJS, Bootstrap, Material Design", // Cleaned up
         },
+        // Highlighted skills for the chip display - 'Python' added here
+        highlightedSkills: [
+            "Java 17", "Python", "Spring Boot", "Microservices", "Oracle 19c", "Kubernetes", "Docker", "Terraform",
+            "PySpark", "Databricks", "OCI/AWS Cloud", "React","Kafka", "SonarQube", 
+        ],
         experience: [
             {
                 company: "Oracle (OFSS)",
                 designation: "Senior Applications Engineer",
-                duration: "July 2022 to Current (2 years 6 months+)",
+                duration: "July 2022 to Current (3 years 3 months)",
                 details: [
                     {
                         project: '"SaaS Engine"',
@@ -204,11 +208,11 @@
      * Renders a single skill category with its associated technologies.
      */
     const SkillCategory = ({ title, technologies }) => (
-        <div className="flex flex-col gap-1 p-3 rounded-lg shadow-sm border
-            bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10
-            hover:bg-white/10 dark:hover:bg-white/10
-            bg-gray-200 border-gray-300 dark:bg-white/5 dark:border-white/10">
-            <h4 className="font-semibold text-sm text-yellow-600 dark:text-yellow-300">{title}</h4>
+        <div className="flex flex-col gap-1 p-3 rounded-xl shadow-md border
+            bg-white dark:bg-gray-800
+            border-gray-300 dark:border-gray-700
+            hover:shadow-lg transition duration-300">
+            <h4 className="font-bold text-md text-yellow-600 dark:text-yellow-300 border-b border-gray-200 dark:border-gray-700/50 pb-1 mb-1">{title}</h4>
             <p className="text-sm text-gray-700 dark:text-gray-300">{technologies}</p>
         </div>
     );
@@ -277,21 +281,38 @@
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{PROFILE_DATA.summary}</p>
             </section>
 
-            {/* Skills Section */}
+            {/* Skills Section - IMPROVED CATEGORIZATION */}
             <section className="mb-10">
                 <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
-                    <Feather size={24}/> Key Technical Skills
+                    <Cpu size={24}/> Key Technical Skills
                 </h2>
+                
+                {/* 1. Highlighted Skills as Chips (Python added) */}
+                <div className="mb-8 p-4 rounded-xl border border-yellow-500/30 bg-yellow-50 dark:bg-gray-700 shadow-md">
+                    <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-3">Core Expertise</h3>
+                    <div className="flex flex-wrap gap-2">
+                        {PROFILE_DATA.highlightedSkills.map((skill, index) => (
+                            <span key={index} className="px-3 py-1 text-sm font-medium rounded-full
+                                bg-yellow-600 text-white dark:bg-yellow-500 dark:text-gray-900
+                                shadow-md hover:bg-yellow-700 dark:hover:bg-yellow-600 transition duration-150">
+                                {skill}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* 2. Detailed Skills by Category (New Structure with Python) */}
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Detailed Technical Stack</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <SkillCategory title="Java Ecosystem" technologies={PROFILE_DATA.skills.java} />
-                    <SkillCategory title="Cloud (AWS/OCI)" technologies={`${PROFILE_DATA.skills.aws}, ${PROFILE_DATA.skills.oci}`} />
-                    <SkillCategory title="DevOps/Tools" technologies={PROFILE_DATA.skills.devOps} />
-                    <SkillCategory title="Database/SQL" technologies={PROFILE_DATA.skills.sql} />
-                    <SkillCategory title="Python/Data" technologies={PROFILE_DATA.skills.python} />
-                    <SkillCategory title="JavaScript/UI" technologies={`${PROFILE_DATA.skills.javaScript}, ${PROFILE_DATA.skills.ux}`} />
-                    <SkillCategory title="Other Technologies" technologies={PROFILE_DATA.skills.other} />
+                    <SkillCategory title="Cloud & DevOps (IaC, CI/CD, Containerization)" technologies={PROFILE_DATA.skills.devOpsCloud} />
+                    <SkillCategory title="Big Data & Analytics" technologies={PROFILE_DATA.skills.bigData} />
+                    <SkillCategory title="Python Ecosystem" technologies={PROFILE_DATA.skills.python} />
+                    <SkillCategory title="Messaging & Tools" technologies={PROFILE_DATA.skills.messaging} />
+                    <SkillCategory title="JavaScript/Web" technologies={PROFILE_DATA.skills.javaScript} />
                 </div>
             </section>
+            {/* End Skills Section */}
 
             {/* Experience Section */}
             <section className="mb-10">
@@ -348,7 +369,7 @@
     );
 
     /**
-     * Home Page Component (Initial Landing Page)
+     * Home View Component (Initial Landing Page)
      */
     const HomeView = ({ onNavigate }) => (
         <div className="container mx-auto px-4 py-16 md:py-24 max-w-4xl min-h-screen flex items-center">
