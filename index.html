@@ -9,6 +9,7 @@
     <!-- Apply custom Tailwind configuration for Inter font -->
     <script>
         tailwind.config = {
+          darkMode: 'class', // Enable dark mode based on the 'dark' class on the HTML tag
           theme: {
             extend: {
               fontFamily: {
@@ -21,12 +22,12 @@
     <!-- Load Inter font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* Optional custom styles */
+        /* Removing the fixed body background to allow Tailwind's theme classes to control it */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #111827; /* Dark background */
+            transition: background-color 0.3s; /* Smooth transition for background change */
         }
     </style>
 </head>
@@ -44,10 +45,9 @@
     <!-- React App Script -->
     <script type="text/babel">
     // In this CDN/Babel environment, React and ReactDOM are available globally.
-    const { useState } = React; // Destructure useState from the global React object
+    const { useState, useEffect } = React; // Destructure useState and useEffect
 
     // --- ICON DEFINITIONS (Simplified for Babel/CDN context) ---
-    // These use inline SVG which is the safest approach in this type of environment.
     const Home = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>;
     const Briefcase = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>;
     const Mail = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
@@ -56,6 +56,9 @@
     const Award = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m15.46 13.79 2.59 2.58a1 1 0 0 0 1.42 0l1.1-1.1a1 1 0 0 0 0-1.42l-2.58-2.59a1 1 0 0 0-.54-.25l-2.73-.39a1 1 0 0 0-.96.65l-.39 2.73a1 1 0 0 0 .25.54Z"/><circle cx="12" cy="12" r="10"/></svg>;
     const Feather = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20.2 12.2l-1.4-1.4c-.6-.6-1.5-.6-2.1 0L12 17.5l-6-6L3.8 13.3c-.6.6-.6 1.5 0 2.1l6 6c.6.6 1.5.6 2.1 0l6-6 1.4-1.4c.6-.6.6-1.5 0-2.1z"/><path d="m16 8 3 3"/><path d="m12 12 3 3"/><path d="m7 7 3 3"/><path d="m3 3 3 3"/></svg>;
     const GraduationCap = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 10v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6"/><path d="M6 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2"/><path d="M12 2a4 4 0 0 0-4 4v2"/><path d="M12 2a4 4 0 0 1 4 4v2"/></svg>;
+    const Sun = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>;
+    const Moon = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>;
+
 
     // --- Data Extracted from Resume Document ---
 
@@ -200,9 +203,12 @@
      * Renders a single skill category with its associated technologies.
      */
     const SkillCategory = ({ title, technologies }) => (
-        <div className="flex flex-col gap-1 p-3 bg-white/5 rounded-lg shadow-inner border border-white/10 transition duration-300 hover:bg-white/10">
-            <h4 className="font-semibold text-sm text-yellow-300">{title}</h4>
-            <p className="text-sm text-gray-300">{technologies}</p>
+        <div className="flex flex-col gap-1 p-3 rounded-lg shadow-sm border
+            bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10
+            hover:bg-white/10 dark:hover:bg-white/10
+            bg-gray-200 border-gray-300 dark:bg-white/5 dark:border-white/10">
+            <h4 className="font-semibold text-sm text-yellow-500 dark:text-yellow-300">{title}</h4>
+            <p className="text-sm text-gray-700 dark:text-gray-300">{technologies}</p>
         </div>
     );
 
@@ -210,17 +216,22 @@
      * Renders a single job entry, including projects and tasks.
      */
     const ExperienceEntry = ({ job }) => (
-        <div className="mb-8 p-6 bg-gray-800 rounded-xl shadow-2xl transition duration-300 hover:shadow-yellow-500/20">
-            <div className="flex flex-col md:flex-row justify-between md:items-center border-b border-yellow-500/30 pb-3 mb-4">
-                <h3 className="text-xl font-bold text-yellow-400 leading-snug">{job.designation}</h3>
-                <p className="text-sm text-gray-400 whitespace-nowrap mt-1 md:mt-0">{job.duration}</p>
+        <div className="mb-8 p-6 rounded-xl shadow-lg transition duration-300
+            bg-white dark:bg-gray-800
+            dark:shadow-2xl hover:shadow-yellow-500/20 shadow-gray-300/50">
+            <div className="flex flex-col md:flex-row justify-between md:items-center border-b pb-3 mb-4
+                border-yellow-500/50 dark:border-yellow-500/30">
+                <h3 className="text-xl font-bold text-yellow-600 dark:text-yellow-400 leading-snug">{job.designation}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap mt-1 md:mt-0">{job.duration}</p>
             </div>
-            <p className="text-lg font-medium text-white mb-4">{job.company}</p>
+            <p className="text-lg font-medium text-gray-800 dark:text-white mb-4">{job.company}</p>
 
             {job.details.map((detail, idx) => (
-                <div key={idx} className="mb-6 p-4 border-l-4 border-gray-600 bg-gray-700/50 rounded-lg">
-                    <h4 className="text-md font-semibold text-gray-200 mb-2 italic">{detail.project}</h4>
-                    <ul className="list-disc list-inside space-y-1 text-gray-400">
+                <div key={idx} className="mb-6 p-4 border-l-4 rounded-lg
+                    border-gray-400 dark:border-gray-600
+                    bg-gray-100/50 dark:bg-gray-700/50">
+                    <h4 className="text-md font-semibold text-gray-700 dark:text-gray-200 mb-2 italic">{detail.project}</h4>
+                    <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
                         {detail.tasks.map((task, tIdx) => (
                             <li key={tIdx} className="text-sm leading-relaxed">
                                 {task}
@@ -237,33 +248,37 @@
      */
     const Resume = () => (
         <div className="container mx-auto px-4 py-8 max-w-5xl">
-            <header className="text-center mb-10 bg-gray-900 p-8 rounded-2xl shadow-lg border border-yellow-500/30">
-                <h1 className="text-4xl md:text-5xl font-extrabold text-white">{PROFILE_DATA.name}</h1>
-                <p className="text-xl text-yellow-400 mt-2">{PROFILE_DATA.title}</p>
-                <div className="flex flex-wrap justify-center gap-4 mt-4 text-gray-400 text-sm">
+            <header className="text-center mb-10 p-8 rounded-2xl shadow-lg border
+                bg-white dark:bg-gray-900
+                border-gray-300 dark:border-yellow-500/30">
+                <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">{PROFILE_DATA.name}</h1>
+                <p className="text-xl text-yellow-600 dark:text-yellow-400 mt-2">{PROFILE_DATA.title}</p>
+                <div className="flex flex-wrap justify-center gap-4 mt-4 text-gray-600 dark:text-gray-400 text-sm">
                     <span className="flex items-center gap-1">
-                        <Mail size={16} className="text-yellow-500"/> {PROFILE_DATA.contact.email}
+                        <Mail size={16} className="text-yellow-600 dark:text-yellow-500"/> {PROFILE_DATA.contact.email}
                     </span>
                     <span className="flex items-center gap-1">
-                        <Phone size={16} className="text-yellow-500"/> {PROFILE_DATA.contact.phone}
+                        <Phone size={16} className="text-yellow-600 dark:text-yellow-500"/> {PROFILE_DATA.contact.phone}
                     </span>
-                    <a href={PROFILE_DATA.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-white transition duration-200">
+                    <a href={PROFILE_DATA.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 dark:hover:text-white transition duration-200">
                         LinkedIn <ExternalLink size={14} className="ml-1"/>
                     </a>
                 </div>
             </header>
 
             {/* Professional Summary */}
-            <section className="mb-10 p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700">
-                <h2 className="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+            <section className="mb-10 p-6 rounded-xl shadow-lg border
+                bg-white dark:bg-gray-800
+                border-gray-300 dark:border-gray-700">
+                <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-4 flex items-center gap-2">
                     <Feather size={24}/> Professional Summary
                 </h2>
-                <p className="text-gray-300 leading-relaxed">{PROFILE_DATA.summary}</p>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{PROFILE_DATA.summary}</p>
             </section>
 
             {/* Skills Section */}
             <section className="mb-10">
-                <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
                     <Feather size={24}/> Key Technical Skills
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -279,7 +294,7 @@
 
             {/* Experience Section */}
             <section className="mb-10">
-                <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
                     <Briefcase size={24}/> Professional Experience
                 </h2>
                 {PROFILE_DATA.experience.map((job, index) => (
@@ -290,38 +305,39 @@
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Education Section */}
                 <section>
-                    <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                    <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
                         <GraduationCap size={24}/> Education
                     </h2>
                     {PROFILE_DATA.education.map((edu, index) => (
-                        <div key={index} className="p-4 bg-gray-800 rounded-xl shadow-lg mb-4">
-                            <h3 className="text-lg font-semibold text-white">{edu.degree}</h3>
-                            <p className="text-gray-400">{edu.institution}</p>
-                            <p className="text-sm text-gray-500">{edu.year}</p>
+                        <div key={index} className="p-4 rounded-xl shadow-lg mb-4
+                            bg-white dark:bg-gray-800">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{edu.degree}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{edu.institution}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-500">{edu.year}</p>
                         </div>
                     ))}
                 </section>
 
                 {/* Certifications & Awards Section */}
                 <section>
-                    <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                    <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
                         <Award size={24}/> Certifications & Awards
                     </h2>
 
                     <div className="mb-6">
-                        <h3 className="text-xl font-semibold text-white mb-2">Certifications</h3>
-                        <ul className="list-disc list-inside space-y-2 text-gray-400 pl-4">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Certifications</h3>
+                        <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 pl-4">
                             {PROFILE_DATA.certifications.map((cert, index) => (
-                                <li key={index} className="text-sm bg-gray-800 p-2 rounded-lg">{cert}</li>
+                                <li key={index} className="text-sm p-2 rounded-lg bg-gray-100 dark:bg-gray-800">{cert}</li>
                             ))}
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-xl font-semibold text-white mb-2">Awards</h3>
-                        <ul className="list-disc list-inside space-y-2 text-gray-400 pl-4">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Awards</h3>
+                        <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 pl-4">
                             {PROFILE_DATA.awards.map((award, index) => (
-                                <li key={index} className="text-sm bg-gray-800 p-2 rounded-lg text-yellow-300 font-medium">{award}</li>
+                                <li key={index} className="text-sm p-2 rounded-lg text-yellow-700 font-medium bg-gray-100 dark:bg-gray-800 dark:text-yellow-300">{award}</li>
                             ))}
                         </ul>
                     </div>
@@ -335,15 +351,19 @@
      */
     const HomeView = ({ onNavigate }) => (
         <div className="container mx-auto px-4 py-16 md:py-24 max-w-4xl min-h-screen flex items-center">
-            <div className="bg-gray-800/90 backdrop-blur-sm p-8 md:p-12 rounded-3xl shadow-2xl border border-yellow-500/30 text-center">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-4">
-                    Hello, I'm <span className="text-yellow-400">{PROFILE_DATA.name}</span>
+            <div className="backdrop-blur-sm p-8 md:p-12 rounded-3xl shadow-2xl border text-center
+                bg-white/90 dark:bg-gray-800/90
+                border-gray-300 dark:border-yellow-500/30">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4">
+                    Hello, I'm <span className="text-yellow-600 dark:text-yellow-400">{PROFILE_DATA.name}</span>
                 </h1>
-                <p className="text-2xl text-gray-300 font-light mb-8">{PROFILE_DATA.title}</p>
+                <p className="text-2xl text-gray-600 dark:text-gray-300 font-light mb-8">{PROFILE_DATA.title}</p>
 
-                <div className="bg-gray-900 p-6 rounded-xl shadow-inner mb-10 border border-gray-700">
-                    <h2 className="text-xl font-semibold text-yellow-300 mb-3">Professional Summary</h2>
-                    <p className="text-gray-400 leading-relaxed text-md">
+                <div className="p-6 rounded-xl shadow-inner mb-10 border
+                    bg-gray-100 dark:bg-gray-900
+                    border-gray-300 dark:border-gray-700">
+                    <h2 className="text-xl font-semibold text-yellow-600 dark:text-yellow-300 mb-3">Professional Summary</h2>
+                    <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-md">
                         {PROFILE_DATA.summary}
                     </p>
                 </div>
@@ -357,16 +377,16 @@
                     </button>
                 </div>
 
-                <div className="flex flex-col sm:flex-row justify-center gap-6 mt-6 border-t border-gray-700 pt-6">
+                <div className="flex flex-col sm:flex-row justify-center gap-6 mt-6 border-t border-gray-300 dark:border-gray-700 pt-6">
                     <a
                         href={`mailto:${PROFILE_DATA.contact.email}`}
-                        className="flex items-center justify-center gap-2 text-yellow-400 hover:text-white transition duration-200"
+                        className="flex items-center justify-center gap-2 text-yellow-600 dark:text-yellow-400 hover:text-gray-900 dark:hover:text-white transition duration-200"
                     >
                         <Mail size={20}/> {PROFILE_DATA.contact.email}
                     </a>
                     <a
                         href={`tel:${PROFILE_DATA.contact.phone}`}
-                        className="flex items-center justify-center gap-2 text-yellow-400 hover:text-white transition duration-200"
+                        className="flex items-center justify-center gap-2 text-yellow-600 dark:text-yellow-400 hover:text-gray-900 dark:hover:text-white transition duration-200"
                     >
                         <Phone size={20}/> {PROFILE_DATA.contact.phone}
                     </a>
@@ -374,7 +394,7 @@
                         href={PROFILE_DATA.contact.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 text-yellow-400 hover:text-white transition duration-200"
+                        className="flex items-center justify-center gap-2 text-yellow-600 dark:text-yellow-400 hover:text-gray-900 dark:hover:text-white transition duration-200"
                     >
                         LinkedIn <ExternalLink size={18}/>
                     </a>
@@ -388,10 +408,29 @@
      */
     const App = () => {
         const [page, setPage] = useState('home'); // 'home' or 'resume'
+        // Initialize theme state and try to read from system preference if available
+        const [theme, setTheme] = useState(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+
+        // Apply 'dark' class to the HTML element based on theme state
+        useEffect(() => {
+            const root = document.documentElement;
+            if (theme === 'dark') {
+                root.classList.add('dark');
+                document.body.style.backgroundColor = '#111827';
+            } else {
+                root.classList.remove('dark');
+                document.body.style.backgroundColor = '#f3f4f6'; // Light mode background
+            }
+        }, [theme]);
 
         const handleNavigate = (targetPage) => {
             setPage(targetPage);
             window.scrollTo(0, 0); // Scroll to top on navigation
+        };
+
+        const toggleTheme = () => {
+            setTheme(prev => prev === 'dark' ? 'light' : 'dark');
         };
 
         const currentPage = page === 'home'
@@ -399,26 +438,45 @@
             : <Resume />;
 
         return (
-            <div className="min-h-screen bg-gray-900 font-sans text-white">
-                <header className="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-yellow-500/20">
+            // Apply base light mode styles, and let the 'dark' class on HTML handle dark mode styles via utility prefixes
+            <div className="min-h-screen font-sans text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+                <header className="sticky top-0 z-10 shadow-lg border-b transition-colors duration-300
+                    bg-white/95 dark:bg-gray-900/95
+                    border-gray-300/50 dark:border-yellow-500/20 backdrop-blur-md">
                     <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-                        <h1 className="text-xl font-bold text-white tracking-wider">
+                        <h1 className="text-xl font-bold tracking-wider text-gray-900 dark:text-white">
                             {PROFILE_DATA.name}
                         </h1>
-                        <button
-                            onClick={() => handleNavigate(page === 'home' ? 'resume' : 'home')}
-                            className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-gray-900 font-semibold rounded-full hover:bg-yellow-700 transition duration-300 text-sm shadow-md"
-                        >
-                            {page === 'home' ? (
-                                <>
-                                    <Briefcase size={16}/> Resume
-                                </>
-                            ) : (
-                                <>
-                                    <Home size={16}/> Home
-                                </>
-                            )}
-                        </button>
+                        <div className="flex items-center gap-4">
+                            {/* Theme Toggle Button */}
+                            <button
+                                onClick={toggleTheme}
+                                className="p-2 rounded-full text-yellow-600 dark:text-yellow-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
+                                aria-label="Toggle theme"
+                            >
+                                {theme === 'dark' ? (
+                                    <Sun size={20} className="text-yellow-400"/>
+                                ) : (
+                                    <Moon size={20} className="text-gray-700"/>
+                                )}
+                            </button>
+
+                            {/* Navigation Button */}
+                            <button
+                                onClick={() => handleNavigate(page === 'home' ? 'resume' : 'home')}
+                                className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-gray-900 font-semibold rounded-full hover:bg-yellow-700 transition duration-300 text-sm shadow-md"
+                            >
+                                {page === 'home' ? (
+                                    <>
+                                        <Briefcase size={16}/> Resume
+                                    </>
+                                ) : (
+                                    <>
+                                        <Home size={16}/> Home
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </nav>
                 </header>
 
@@ -426,7 +484,10 @@
                     {currentPage}
                 </main>
 
-                <footer className="w-full py-4 bg-gray-800 text-center text-gray-500 text-xs border-t border-gray-700">
+                <footer className="w-full py-4 text-center text-xs border-t
+                    bg-gray-200 dark:bg-gray-800
+                    text-gray-500 dark:text-gray-500
+                    border-gray-300 dark:border-gray-700">
                     &copy; {new Date().getFullYear()} {PROFILE_DATA.name}. Built with React and Tailwind CSS.
                 </footer>
             </div>
@@ -434,7 +495,6 @@
     };
 
     // --- Initialize React Application ---
-    // By placing this script at the end of the body, we ensure all dependencies and the #root element are available.
     const rootElement = document.getElementById('root');
     if (rootElement) {
         // Use the globally available ReactDOM and createRoot method for React 18
