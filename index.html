@@ -3,852 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogeendra Rao - Software Developer</title>
-    <style>
-        :root {
-            --color-primary: #20B2AA;
-            --color-primary-dark: #1a8f89;
-            --color-accent: #FF6B6B;
-            --color-text: #2d3748;
-            --color-text-light: #718096;
-            --color-bg: #ffffff;
-            --color-bg-alt: #f7fafc;
-            --color-bg-card: #ffffff;
-            --color-border: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    <title>Yogeendra Rao - Senior Software Developer Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Apply custom Tailwind configuration for Inter font -->
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+              },
+            }
+          }
         }
-
-        * {
+    </script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Optional custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: var(--color-text);
-            background: linear-gradient(to bottom right, #f7fafc 0%, #edf2f7 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            background: var(--color-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            color: white;
-            padding: 4rem 2rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.05)"/></svg>');
-            opacity: 0.3;
-        }
-
-        header .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        header p {
-            font-size: 1.25rem;
-            opacity: 0.95;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-info a:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .content {
-            padding: 3rem 2.5rem;
-        }
-
-        section {
-            margin-bottom: 4rem;
-        }
-
-        section h2 {
-            font-size: 2rem;
-            color: var(--color-text);
-            margin-bottom: 2rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        section h2::before {
-            content: '';
-            width: 4px;
-            height: 32px;
-            background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
-            border-radius: 2px;
-        }
-
-        .summary {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: var(--color-text);
-            background: var(--color-bg-alt);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .summary strong {
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .skill-category {
-            background: var(--color-bg-card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--color-primary);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-category:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-4px);
-        }
-
-        .skill-category:hover::before {
-            transform: scaleY(1);
-        }
-
-        .skill-category h3 {
-            font-size: 1.15rem;
-            color: var(--color-primary);
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-category h3::after {
-            content: '→';
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            color: var(--color-accent);
-        }
-
-        .skill-category:hover h3::after {
-            opacity: 1;
-        }
-
-        .skill-category p {
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .experience-item, .project-item {
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: var(--color-bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .experience-item:hover, .project-item:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateX(4px);
-        }
-
-        .experience-item::before, .project-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
-            border-radius: 12px 0 0 12px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .experience-item:hover::before, .project-item:hover::before {
-            opacity: 1;
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.25rem;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .experience-header h3 {
-            font-size: 1.4rem;
-            color: var(--color-text);
-            font-weight: 700;
-        }
-
-        .experience-header .duration {
-            color: var(--color-text-light);
-            font-weight: 500;
-            font-size: 0.9rem;
-            background: var(--color-bg-alt);
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-            white-space: nowrap;
-        }
-
-        .experience-header .role {
-            font-size: 1.05rem;
-            color: var(--color-primary);
-            font-weight: 600;
-            width: 100%;
-        }
-
-        .experience-item ul, .project-item ul {
-            list-style: none;
-            margin-top: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .experience-item li, .project-item li {
-            padding-left: 1.75rem;
-            position: relative;
-            color: var(--color-text);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .experience-item li::before, .project-item li::before {
-            content: "●";
-            position: absolute;
-            left: 0.5rem;
-            color: var(--color-primary);
-            font-size: 0.6rem;
-            top: 0.6rem;
-        }
-
-        .project-header {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .project-header h3 {
-            font-size: 1.3rem;
-            color: var(--color-text);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .project-meta .role {
-            color: var(--color-text-light);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .project-meta .duration {
-            color: var(--color-text-light);
-            font-size: 0.85rem;
-            font-weight: 500;
-            background: var(--color-bg-alt);
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-        }
-
-        .education-item, .cert-item, .award-item {
-            padding: 1.5rem;
-            background: var(--color-bg-card);
-            border-radius: 12px;
-            margin-bottom: 1.25rem;
-            border: 1px solid var(--color-border);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .education-item:hover, .cert-item:hover, .award-item:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--color-primary);
-        }
-
-        .education-item::before, .cert-item::before, .award-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, var(--color-primary), var(--color-accent));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .education-item:hover::before, .cert-item:hover::before, .award-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .education-item h3, .cert-item h3, .award-item h3 {
-            font-size: 1.1rem;
-            color: var(--color-text);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-item p, .cert-item p, .award-item p {
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .cert-item a {
-            color: var(--color-primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s ease;
-        }
-
-        .cert-item a:hover {
-            color: var(--color-accent);
-            text-decoration: none;
-        }
-
-        footer {
-            background: linear-gradient(135deg, var(--color-text) 0%, #1a202c 100%);
-            color: white;
-            text-align: center;
-            padding: 2.5rem;
-            font-size: 0.9rem;
-        }
-
-        footer p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .export-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .export-btn {
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .export-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 0;
-                border-radius: 0;
-            }
-
-            header {
-                padding: 3rem 1.5rem 2.5rem;
-            }
-
-            header h1 {
-                font-size: 2.25rem;
-            }
-
-            header p {
-                font-size: 1.1rem;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .content {
-                padding: 2rem 1.5rem;
-            }
-
-            section {
-                margin-bottom: 3rem;
-            }
-
-            section h2 {
-                font-size: 1.6rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .experience-header {
-                flex-direction: column;
-            }
-
-            .experience-item, .project-item {
-                padding: 1.5rem;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-            .container {
-                box-shadow: none;
-            }
-            header {
-                background: var(--color-primary);
-            }
+            background-color: #111827; /* Dark background */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1>Yogeendra Rao</h1>
-                <p>Progressive Software Developer | 10+ Years Experience</p>
-                <div class="contact-info">
-                <a href="mailto:yogeendra.r@gmail.com">
-                    <span>✉</span> yogeendra.r@gmail.com
-                </a>
-                <a href="tel:+919902901078">
-                    <span>📱</span> +91 9902901078
-                </a>
-                <a href="http://www.linkedin.com/in/yogeendrarao" target="_blank" rel="noopener noreferrer">
-                    <span>🔗</span> LinkedIn
-                </a>
-                </div>
-            </div>
-        </header>
+    <!-- This is the root element where the React application will be mounted -->
+    <div id="root"></div>
 
-        <div class="content">
-            <section>
-                <h2>Professional Summary</h2>
-                <div class="summary">
-                    Progressive Software Developer with <strong>10+ years</strong> of experience in design, developing software solutions for client and server applications based on current and expected demands. Works effectively in high-pressure environments to meet challenging design standards and schedule targets. Expert in programming languages, design and operations tools. Proven experience working with deadlines and interruptions.
-                </div>
-            </section>
+    <!-- Load React and React DOM -->
+    <!-- IMPORTANT: Ensure React 18 is loaded -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Load Babel for JSX and ES6 support (essential for the single-file setup) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-            <section>
-                <h2>Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Java</h3>
-                        <p>Java 17, Jersey, Spring/Spring Boot, Spring Cloud (Microservices), Helidon, Hibernate (JPA), Junit</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>SQL</h3>
-                        <p>Oracle 19c, Azure SQL, MySQL, Inflex DB, Spark SQL</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Python</h3>
-                        <p>Flask, Pandas, Requests, Beautiful Soup, PySpark</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>JavaScript</h3>
-                        <p>React, AngularJS, jQuery, NodeJS</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>OCI</h3>
-                        <p>OKE, Functions, API Gateway, Load Balancer, OCI Streams, Alarms</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>AWS</h3>
-                        <p>EC2, S3, DynamoDB, Lambdas, VPC, Databricks, CloudFormation, EKS</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>DevOps</h3>
-                        <p>GitHub/Gitlab, Grafana, Kubernetes, SonarQube, Jira, Azure DevOps, Jenkins</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Other</h3>
-                        <p>Shell script, Docker, Terraform, Apache Kafka, Swagger, Postman, Confluence, Bootstrap, Material Design</p>
-                    </div>
-                </div>
-            </section>
+    <!-- React App Script -->
+    <script type="text/babel">
+    // In this CDN/Babel environment, React and ReactDOM are available globally.
+    const { useState } = React; // Destructure useState from the global React object
 
-            <section>
-                <h2>Experience</h2>
-                
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Oracle (OFSS)</h3>
-                            <div class="role">Senior Applications Engineer</div>
-                        </div>
-                        <div class="duration">July 2022 - Present (2 years 6 months)</div>
-                    </div>
-                </div>
+    // --- ICON DEFINITIONS (Simplified for Babel/CDN context) ---
+    // These use inline SVG which is the safest approach in this type of environment.
+    const Home = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>;
+    const Briefcase = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>;
+    const Mail = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
+    const Phone = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-5.6-5.6A19.79 19.79 0 0 1 2 4.18 2 2 0 0 1 4.1 2h3.18a2 2 0 0 1 2 1.74l.15 3.16a2 2 0 0 1-1.12 1.95l-1.63.81a10 10 0 0 0 5.86 5.86l.81-1.63a2 2 0 0 1 1.95-1.12l3.16.15a2 2 0 0 1 1.74 2z"/></svg>;
+    const ExternalLink = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>;
+    const Award = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m15.46 13.79 2.59 2.58a1 1 0 0 0 1.42 0l1.1-1.1a1 1 0 0 0 0-1.42l-2.58-2.59a1 1 0 0 0-.54-.25l-2.73-.39a1 1 0 0 0-.96.65l-.39 2.73a1 1 0 0 0 .25.54Z"/><circle cx="12" cy="12" r="10"/></svg>;
+    const Feather = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20.2 12.2l-1.4-1.4c-.6-.6-1.5-.6-2.1 0L12 17.5l-6-6L3.8 13.3c-.6.6-.6 1.5 0 2.1l6 6c.6.6 1.5.6 2.1 0l6-6 1.4-1.4c.6-.6.6-1.5 0-2.1z"/><path d="m16 8 3 3"/><path d="m12 12 3 3"/><path d="m7 7 3 3"/><path d="m3 3 3 3"/></svg>;
+    const GraduationCap = ({ size = 24, className = "" }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 10v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6"/><path d="M6 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2"/><path d="M12 2a4 4 0 0 0-4 4v2"/><path d="M12 2a4 4 0 0 1 4 4v2"/></svg>;
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Gainwell Technologies</h3>
-                            <div class="role">Professional 2 Product Developer</div>
-                        </div>
-                        <div class="duration">Oct 2020 - July 2022 (1 year 9 months)</div>
-                    </div>
-                </div>
+    // --- Data Extracted from Resume Document ---
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>DXC Technology</h3>
-                            <div class="role">Professional 1 System Development</div>
-                        </div>
-                        <div class="duration">July 2016 - Sept 2020 (4 years 2 months)</div>
-                    </div>
-                </div>
+    const PROFILE_DATA = {
+        name: "Yogeendra Rao",
+        title: "Senior Software Developer",
+        summary: "Progressive Software Developer with 10+ years of experience in design, developing software solutions for client and server applications based on current and expected demands. Works effectively in high-pressure environments to meet challenging design standards and schedule targets. Expert in programming languages, design and operations tools. Proven experience working with deadlines and interruptions.",
+        contact: {
+            email: "yogeendra.r@gmail.com",
+            phone: "+91 9902901078",
+            linkedin: "https://www.linkedin.com/in/your-profile-url" // Placeholder for actual LinkedIn URL
+        },
+        skills: {
+            java: "Java 17, Jersey, Spring/Spring Boot, Spring Cloud (Microservices), Helidon, Hibernate (JPA), Junit",
+            sql: "Oracle 19c, Azure SQL, MySQL, Inflex DB, Spark SQL",
+            python: "Flask, Pandas, Requests, Beautiful Soup, PySpark",
+            javaScript: "React, AngularJS, jQuery, NodeJS",
+            oci: "OKE, Functions, API Gateway, Load Balancer, OCI Streams, Alarms",
+            aws: "EC2, S3, DynamoDB, Lambdas, VPC, Databricks, CloudFormation, EKS",
+            devOps: "GitHub/Gitlab, Grafana, Kubernetes, SonarQube, Jira, Azure DevOps, Jenkins",
+            ux: "Bootstrap, Material Design",
+            other: "Shell script, Docker, Terraform, Apache Kafka, Swagger, Postman, Confluence",
+        },
+        experience: [
+            {
+                company: "Oracle (OFSS)",
+                designation: "Senior Applications Engineer",
+                duration: "July 2022 to Current (2 years 6 months+)",
+                details: [
+                    {
+                        project: '"SaaS Engine"',
+                        tasks: [
+                            "Developed APIs in common resource services using Jersey and Oracle Autonomous JSON Database.",
+                            "Worked on integrating Oracle Process Modeling Framework (PMF) with SaaS Apps using Oracle Streams.",
+                            "Streamlined the customer onboarding pipeline using GitLab Pipeline.",
+                            "Used Terraforms to configure the OCI API Gateway and load balancers.",
+                            "Used Open API library to create swagger documents for different resources created dynamically using JSON Schema.",
+                        ],
+                    },
+                    {
+                        project: "ERF Platform – Configuration Registry",
+                        tasks: [
+                            "Designed and developed the Platform registry which stores resource details and mapped to customer.",
+                            "Used Jersey and Oracle Autonomous Database to implement this requirement.",
+                            "Deployed to Kubernetes (OKE) cluster using GitLab pipeline. Performed static scans using Sonar and Fortify.",
+                        ],
+                    },
+                ],
+            },
+            {
+                company: "Gainwell Technologies",
+                designation: "Professional 2 Product Developer",
+                duration: "Oct 2020 to July 2022 (1 year 9 months)",
+                details: [
+                    {
+                        project: "HEDIS - Healthcare Effectiveness Data and Information Set",
+                        tasks: [
+                            "Translated HEDIS Technical Specifications to code, managed Health Plan Certification, and guided team members.",
+                            "Worked on Lakehouse architecture, Spark SQL, PySpark and Databricks Notebook to build the measures.",
+                            "Created APIs using Apache Kafka, Spring Boot and Spring Cloud (Microservices).",
+                            "Migrated SQL and python scripts to Databricks.",
+                        ],
+                    },
+                ],
+            },
+            {
+                company: "DXC Technology (Transferred to Gainwell Technology)",
+                designation: "Professional 1 System Development",
+                duration: "July 2016 to Sept 2020 (4 years 2 months)",
+                details: [
+                    {
+                        project: "Performance Assessment Service - Hong Kong Housing Authority",
+                        tasks: [
+                            "Developed Microservices using Java, Spring Boot, Spring MVC, Spring Cloud, Oracle DB, AngularJS, GitLab.",
+                            "Onsite development and coordinating with customer on the requirement.",
+                            "Migrated EMC ECS object storage from IBM content manager. Solved critical tickets.",
+                        ],
+                    },
+                    {
+                        project: "HKEX, Hong Kong",
+                        tasks: [
+                            "Developed features for Enterprise Dispatching System's Internal and External application.",
+                            "Involved in executing load testing using JMeter and deployment automation using Ansible.",
+                            "Used SonarQube and Fortify for static code quality analysis and fixed issues.",
+                        ],
+                    },
+                    {
+                        project: "Intelligent Self-Service Project",
+                        tasks: [
+                            "Built a ticket search and analysis tool using Stanford CoreNLP, Spring Boot and AngularJS.",
+                            "Worked on KPI dashboards for Retail customer using Grafana and InfluxDB.",
+                            "Developed chat bot custom hooks and built intent fulfillment plugins.",
+                        ],
+                    },
+                    {
+                        project: "Category Trend Analysis (HPE)",
+                        tasks: [
+                            "Migrated HPE Haven OnDemand's Category Trend Analysis module from Python to Apache Spark (PySpark).",
+                            "Automated monitoring jobs.",
+                        ],
+                    },
+                ],
+            },
+            {
+                company: "Sunplus Solutions Pvt. Ltd.",
+                designation: "Software Engineer",
+                duration: "June 2014 to July 2016 (2 years 3 months)",
+                details: [
+                    {
+                        project: "Abu Dhabi Stock Exchange (Client)",
+                        tasks: [
+                            "Built a real-time data transfer system from Stock Exchange System to back-office database for analytics.",
+                            "Worked on Predictive analysis using Hadoop and Cascading Pattern for running the exported SPSS modal at scale.",
+                            "Built an automated pipeline to apply government services for an ERP tool.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        education: [
+            {
+                degree: "Bachelor of Engineering (BE) - Information Science & Engineering",
+                institution: "Visvesvaraya Technological University, Bangalore, India",
+                year: "September 2012",
+            },
+        ],
+        certifications: [
+            "Oracle Cloud Infrastructure 2024 Foundations Associate (1Z0-1085-24)",
+            "SAFe for Teams (5.1)",
+            "Microsoft Azure Fundamentals 2021 (AZ-900)",
+            "Microsoft Azure Data Fundamentals 2021 (DP-900)",
+        ],
+        awards: [
+            "STAR OF THE QUARTER AWARD - Q3-Oct - Dec 2020, Gainwell Technologies",
+            "Software Innovation Award - DXC technology",
+        ]
+    };
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Sunplus Solutions</h3>
-                            <div class="role">Software Engineer</div>
-                        </div>
-                        <div class="duration">May 2014 - July 2016 (2 years 3 months)</div>
-                    </div>
-                </div>
-            </section>
+    // --- Components ---
 
-            <section>
-                <h2>Key Projects</h2>
-                
-                <div class="project-item">
-                    <div class="project-header">
-                        <h3>SaaS Engine</h3>
-                        <div class="project-meta">
-                            <span class="role">Senior Applications Engineer, Oracle, Bangalore</span>
-                            <span class="duration">April 2023 - Current</span>
-                        </div>
-                    </div>
-                    <ul>
-                        <li>Developed APIs in common resource services using Jersey and Oracle Autonomous JSON Database</li>
-                        <li>Worked on integrating Oracle Process Modeling Framework (PMF) with SaaS Apps using Oracle Streams</li>
-                        <li>Streamlined the customer onboarding pipeline using GitLab Pipeline</li>
-                        <li>Worked on Terraforms to configure the OCI API Gateway and load balancers</li>
-                        <li>Used Open API library to create swagger documents for different resources created dynamically using JSON Schema</li>
-                        <li>Designed, developed, and maintained clean code</li>
-                        <li>Daily standup meeting with product owner with day-by-day development update using Jira</li>
-                    </ul>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <h3>ERF Platform - Configuration Registry</h3>
-                        <div class="project-meta">
-                            <span class="role">Senior Applications Engineer, Oracle, Bangalore</span>
-                            <span class="duration">July 2022 - March 2023</span>
-                        </div>
-                    </div>
-                    <ul>
-                        <li>Design and developed the Platform registry which stores resource details and mapped to customer</li>
-                        <li>Used Jersey and Oracle Autonomous Database to implement this requirement</li>
-                        <li>Documented APIs using Open API 3.0</li>
-                        <li>Deployed to Kubernetes (OKE) cluster using GitLab pipeline</li>
-                        <li>Designed, developed, and maintained clean code. Performed static scans using Sonar and Fortify</li>
-                        <li>Daily standup meeting with product owner with day-by-day development update tracked using Jira</li>
-                    </ul>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <h3>HEDIS - Healthcare Effectiveness Data and Information Set</h3>
-                        <div class="project-meta">
-                            <span class="role">Professional 2 Product Developer, Gainwell Technologies, Bangalore</span>
-                            <span class="duration">April 2020 - July 2022</span>
-                        </div>
-                    </div>
-                    <ul>
-                        <li>Understanding HEDIS Technical Specifications and translating it to code, Health Plan Certification, and guiding team members</li>
-                        <li>Worked on Lakehouse architecture, Spark SQL, PySpark and Databricks Notebook to build the measures</li>
-                        <li>Created APIs using Apache Kafka, Spring Boot and Spring Cloud (Microservices)</li>
-                        <li>Migrating SQL and python scripts to Databricks</li>
-                        <li>Designed, developed, and maintained clean code</li>
-                        <li>Daily standup meeting with product owner with day-by-day development update tracked using Azure DevOps</li>
-                    </ul>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <h3>Performance Assessment Service - Hong Kong Housing Authority</h3>
-                        <div class="project-meta">
-                            <span class="role">Professional 1 System Development, DXC Technology</span>
-                            <span class="duration">August 2018 - April 2020</span>
-                        </div>
-                    </div>
-                    <ul>
-                        <li>Gathering requirements, analyzing business needs, executing using DevOps applications life cycle to develop using Microservices and implement streamlined technology solutions</li>
-                        <li>Writing Object-Oriented, server-side web application development using Java, Spring boot, Spring MVC, Spring Cloud, Oracle DB, AngularJS, GitLab</li>
-                        <li>Onsite development and coordinating with customer on the requirement</li>
-                        <li>Daily Standup meeting with customer with day-to-day development update</li>
-                        <li>Migrated EMC ECS object storage from IBM content manager</li>
-                    </ul>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <h3>Intelligent Self-Service Project</h3>
-                        <div class="project-meta">
-                            <span class="role">Service Information Developer I, DXC Technology, Bangalore</span>
-                            <span class="duration">April 2017 - August 2018</span>
-                        </div>
-                    </div>
-                    <ul>
-                        <li>Build a ticket search and analysis tool using Stanford CoreNLP, Spring Boot and AngularJS</li>
-                        <li>Worked on KPI dashboards for Retail customer using Grafana and InfluxDB</li>
-                        <li>Developed chat bot custom hook using different NLU engine (e-commerce bot and operations bot) and build intent fulfillments plugins like database/RPA/web service</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section>
-                <h2>Education</h2>
-                <div class="education-item">
-                    <h3>Bachelor of Engineering (BE) - Information Science &amp; Engineering</h3>
-                    <p>Visvesvaraya Technological University, Bangalore, India | September 2012</p>
-                </div>
-            </section>
-
-            <section>
-                <h2>Certifications</h2>
-                <div class="cert-item">
-                    <h3><a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=219EC2CC2E7EC01C7B0C5AD88BAE610D6983181D7E89B2B85EF21F04783C015F" target="_blank" rel="noopener noreferrer">Oracle Cloud Infrastructure 2024 Foundations Associate (1Z0-1085-24)</a></h3>
-                </div>
-                <div class="cert-item">
-                    <h3><a href="https://www.credly.com/badges/458c3652-181f-41f9-b78a-423ca13c561f" target="_blank" rel="noopener noreferrer">SAFe for Teams (5.1)</a></h3>
-                </div>
-                <div class="cert-item">
-                    <h3><a href="https://www.credly.com/go/Z8qHAyM7GTTazB3E1fyLQw" target="_blank" rel="noopener noreferrer">Microsoft Azure Fundamentals 2021 (AZ-900)</a></h3>
-                </div>
-                <div class="cert-item">
-                    <h3><a href="https://www.credly.com/badges/5f10a65a-0409-4cb6-ae59-1430395f5912" target="_blank" rel="noopener noreferrer">Microsoft Azure Data Fundamentals 2021 (DP-900)</a></h3>
-                </div>
-            </section>
-
-            <section>
-                <h2>Awards</h2>
-                <div class="award-item">
-                    <h3>STAR OF THE QUARTER AWARD</h3>
-                    <p>Q3-Oct - Dec 2020, Gainwell Technologies</p>
-                </div>
-                <div class="award-item">
-                    <h3>Software Innovation Award</h3>
-                    <p>DXC Technology</p>
-                </div>
-            </section>
+    /**
+     * Renders a single skill category with its associated technologies.
+     */
+    const SkillCategory = ({ title, technologies }) => (
+        <div className="flex flex-col gap-1 p-3 bg-white/5 rounded-lg shadow-inner border border-white/10 transition duration-300 hover:bg-white/10">
+            <h4 className="font-semibold text-sm text-yellow-300">{title}</h4>
+            <p className="text-sm text-gray-300">{technologies}</p>
         </div>
+    );
 
-        <footer>
-            <p>&copy; 2025 Yogeendra Rao. All rights reserved.</p>
-            <div class="export-buttons">
-                <button class="export-btn" onclick="exportToPDF()">
-                    <span>📄</span> Export as PDF
-                </button>
-                <button class="export-btn" onclick="exportToDOCX()">
-                    <span>📝</span> Export as DOCX
-                </button>
+    /**
+     * Renders a single job entry, including projects and tasks.
+     */
+    const ExperienceEntry = ({ job }) => (
+        <div className="mb-8 p-6 bg-gray-800 rounded-xl shadow-2xl transition duration-300 hover:shadow-yellow-500/20">
+            <div className="flex flex-col md:flex-row justify-between md:items-center border-b border-yellow-500/30 pb-3 mb-4">
+                <h3 className="text-xl font-bold text-yellow-400 leading-snug">{job.designation}</h3>
+                <p className="text-sm text-gray-400 whitespace-nowrap mt-1 md:mt-0">{job.duration}</p>
             </div>
-        </footer>
-    </div>
+            <p className="text-lg font-medium text-white mb-4">{job.company}</p>
 
-    <script>
-        function exportToPDF() {
-            window.print();
-        }
+            {job.details.map((detail, idx) => (
+                <div key={idx} className="mb-6 p-4 border-l-4 border-gray-600 bg-gray-700/50 rounded-lg">
+                    <h4 className="text-md font-semibold text-gray-200 mb-2 italic">{detail.project}</h4>
+                    <ul className="list-disc list-inside space-y-1 text-gray-400">
+                        {detail.tasks.map((task, tIdx) => (
+                            <li key={tIdx} className="text-sm leading-relaxed">
+                                {task}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    );
 
-        async function exportToDOCX() {
-            // Get all the content
-            const name = "Yogeendra Rao";
-            const title = "Progressive Software Developer | 10+ Years Experience";
-            const email = "yogeendra.r@gmail.com";
-            const phone = "+91 9902901078";
-            const linkedin = "http://www.linkedin.com/in/yogeendrarao";
-            
-            const summary = document.querySelector('.summary').textContent.trim();
-            
-            // Build text content for download
-            let docContent = `${name}\n${title}\n\n`;
-            docContent += `Contact Information:\n`;
-            docContent += `Email: ${email}\n`;
-            docContent += `Phone: ${phone}\n`;
-            docContent += `LinkedIn: ${linkedin}\n\n`;
-            docContent += `PROFESSIONAL SUMMARY\n${summary}\n\n`;
-            
-            // Add Skills
-            docContent += `SKILLS\n`;
-            const skills = document.querySelectorAll('.skill-category');
-            skills.forEach(skill => {
-                const title = skill.querySelector('h3').textContent;
-                const content = skill.querySelector('p').textContent;
-                docContent += `${title}: ${content}\n`;
-            });
-            docContent += `\n`;
-            
-            // Add Experience
-            docContent += `EXPERIENCE\n`;
-            const experiences = document.querySelectorAll('.experience-item');
-            experiences.forEach(exp => {
-                const company = exp.querySelector('h3').textContent;
-                const role = exp.querySelector('.role').textContent;
-                const duration = exp.querySelector('.duration').textContent;
-                docContent += `\n${company}\n${role}\n${duration}\n`;
-            });
-            docContent += `\n`;
-            
-            // Add Projects
-            docContent += `KEY PROJECTS\n`;
-            const projects = document.querySelectorAll('.project-item');
-            projects.forEach(project => {
-                const title = project.querySelector('h3').textContent;
-                const meta = project.querySelector('.project-meta').textContent;
-                const bullets = Array.from(project.querySelectorAll('li')).map(li => `• ${li.textContent}`).join('\n');
-                docContent += `\n${title}\n${meta}\n${bullets}\n`;
-            });
-            docContent += `\n`;
-            
-            // Add Education
-            docContent += `EDUCATION\n`;
-            const education = document.querySelector('.education-item');
-            docContent += `${education.querySelector('h3').textContent}\n`;
-            docContent += `${education.querySelector('p').textContent}\n\n`;
-            
-            // Add Certifications
-            docContent += `CERTIFICATIONS\n`;
-            const certs = document.querySelectorAll('.cert-item');
-            certs.forEach(cert => {
-                const certName = cert.querySelector('h3').textContent;
-                docContent += `• ${certName}\n`;
-            });
-            docContent += `\n`;
-            
-            // Add Awards
-            docContent += `AWARDS\n`;
-            const awards = document.querySelectorAll('.award-item');
-            awards.forEach(award => {
-                const title = award.querySelector('h3').textContent;
-                const details = award.querySelector('p').textContent;
-                docContent += `• ${title} - ${details}\n`;
-            });
-            
-            // Create and download the file
-            const blob = new Blob([docContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Yogeendra-Rao-Resume.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-            
-            alert('Resume exported as TXT file. For proper DOCX format, please use the PDF export (Print) and convert using an online tool, or copy the content into Microsoft Word.');
-        }
+    /**
+     * Resume View Component
+     */
+    const Resume = () => (
+        <div className="container mx-auto px-4 py-8 max-w-5xl">
+            <header className="text-center mb-10 bg-gray-900 p-8 rounded-2xl shadow-lg border border-yellow-500/30">
+                <h1 className="text-4xl md:text-5xl font-extrabold text-white">{PROFILE_DATA.name}</h1>
+                <p className="text-xl text-yellow-400 mt-2">{PROFILE_DATA.title}</p>
+                <div className="flex flex-wrap justify-center gap-4 mt-4 text-gray-400 text-sm">
+                    <span className="flex items-center gap-1">
+                        <Mail size={16} className="text-yellow-500"/> {PROFILE_DATA.contact.email}
+                    </span>
+                    <span className="flex items-center gap-1">
+                        <Phone size={16} className="text-yellow-500"/> {PROFILE_DATA.contact.phone}
+                    </span>
+                    <a href={PROFILE_DATA.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-white transition duration-200">
+                        LinkedIn <ExternalLink size={14} className="ml-1"/>
+                    </a>
+                </div>
+            </header>
+
+            {/* Professional Summary */}
+            <section className="mb-10 p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700">
+                <h2 className="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                    <Feather size={24}/> Professional Summary
+                </h2>
+                <p className="text-gray-300 leading-relaxed">{PROFILE_DATA.summary}</p>
+            </section>
+
+            {/* Skills Section */}
+            <section className="mb-10">
+                <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                    <Feather size={24}/> Key Technical Skills
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <SkillCategory title="Java Ecosystem" technologies={PROFILE_DATA.skills.java} />
+                    <SkillCategory title="Cloud (AWS/OCI)" technologies={`${PROFILE_DATA.skills.aws}, ${PROFILE_DATA.skills.oci}`} />
+                    <SkillCategory title="DevOps/Tools" technologies={PROFILE_DATA.skills.devOps} />
+                    <SkillCategory title="Database/SQL" technologies={PROFILE_DATA.skills.sql} />
+                    <SkillCategory title="Python/Data" technologies={PROFILE_DATA.skills.python} />
+                    <SkillCategory title="JavaScript/UI" technologies={`${PROFILE_DATA.skills.javaScript}, ${PROFILE_DATA.skills.ux}`} />
+                    <SkillCategory title="Other Technologies" technologies={PROFILE_DATA.skills.other} />
+                </div>
+            </section>
+
+            {/* Experience Section */}
+            <section className="mb-10">
+                <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                    <Briefcase size={24}/> Professional Experience
+                </h2>
+                {PROFILE_DATA.experience.map((job, index) => (
+                    <ExperienceEntry key={index} job={job} />
+                ))}
+            </section>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Education Section */}
+                <section>
+                    <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                        <GraduationCap size={24}/> Education
+                    </h2>
+                    {PROFILE_DATA.education.map((edu, index) => (
+                        <div key={index} className="p-4 bg-gray-800 rounded-xl shadow-lg mb-4">
+                            <h3 className="text-lg font-semibold text-white">{edu.degree}</h3>
+                            <p className="text-gray-400">{edu.institution}</p>
+                            <p className="text-sm text-gray-500">{edu.year}</p>
+                        </div>
+                    ))}
+                </section>
+
+                {/* Certifications & Awards Section */}
+                <section>
+                    <h2 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2 border-b border-yellow-500/50 pb-2">
+                        <Award size={24}/> Certifications & Awards
+                    </h2>
+
+                    <div className="mb-6">
+                        <h3 className="text-xl font-semibold text-white mb-2">Certifications</h3>
+                        <ul className="list-disc list-inside space-y-2 text-gray-400 pl-4">
+                            {PROFILE_DATA.certifications.map((cert, index) => (
+                                <li key={index} className="text-sm bg-gray-800 p-2 rounded-lg">{cert}</li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 className="text-xl font-semibold text-white mb-2">Awards</h3>
+                        <ul className="list-disc list-inside space-y-2 text-gray-400 pl-4">
+                            {PROFILE_DATA.awards.map((award, index) => (
+                                <li key={index} className="text-sm bg-gray-800 p-2 rounded-lg text-yellow-300 font-medium">{award}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    );
+
+    /**
+     * Home Page Component (Initial Landing Page)
+     */
+    const HomeView = ({ onNavigate }) => (
+        <div className="container mx-auto px-4 py-16 md:py-24 max-w-4xl min-h-screen flex items-center">
+            <div className="bg-gray-800/90 backdrop-blur-sm p-8 md:p-12 rounded-3xl shadow-2xl border border-yellow-500/30 text-center">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-4">
+                    Hello, I'm <span className="text-yellow-400">{PROFILE_DATA.name}</span>
+                </h1>
+                <p className="text-2xl text-gray-300 font-light mb-8">{PROFILE_DATA.title}</p>
+
+                <div className="bg-gray-900 p-6 rounded-xl shadow-inner mb-10 border border-gray-700">
+                    <h2 className="text-xl font-semibold text-yellow-300 mb-3">Professional Summary</h2>
+                    <p className="text-gray-400 leading-relaxed text-md">
+                        {PROFILE_DATA.summary}
+                    </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row justify-center gap-6 mb-10">
+                    <button
+                        onClick={() => onNavigate('resume')}
+                        className="flex items-center justify-center bg-yellow-600 hover:bg-yellow-700 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg shadow-yellow-500/50 transition transform hover:scale-105 duration-300 text-lg"
+                    >
+                        <Briefcase size={20} className="mr-3"/> View Full Resume
+                    </button>
+                </div>
+
+                <div className="flex flex-col sm:flex-row justify-center gap-6 mt-6 border-t border-gray-700 pt-6">
+                    <a
+                        href={`mailto:${PROFILE_DATA.contact.email}`}
+                        className="flex items-center justify-center gap-2 text-yellow-400 hover:text-white transition duration-200"
+                    >
+                        <Mail size={20}/> {PROFILE_DATA.contact.email}
+                    </a>
+                    <a
+                        href={`tel:${PROFILE_DATA.contact.phone}`}
+                        className="flex items-center justify-center gap-2 text-yellow-400 hover:text-white transition duration-200"
+                    >
+                        <Phone size={20}/> {PROFILE_DATA.contact.phone}
+                    </a>
+                    <a
+                        href={PROFILE_DATA.contact.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 text-yellow-400 hover:text-white transition duration-200"
+                    >
+                        LinkedIn <ExternalLink size={18}/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+
+    /**
+     * Main Application Component
+     */
+    const App = () => {
+        const [page, setPage] = useState('home'); // 'home' or 'resume'
+
+        const handleNavigate = (targetPage) => {
+            setPage(targetPage);
+            window.scrollTo(0, 0); // Scroll to top on navigation
+        };
+
+        const currentPage = page === 'home'
+            ? <HomeView onNavigate={handleNavigate} />
+            : <Resume />;
+
+        return (
+            <div className="min-h-screen bg-gray-900 font-sans text-white">
+                <header className="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-yellow-500/20">
+                    <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+                        <h1 className="text-xl font-bold text-white tracking-wider">
+                            {PROFILE_DATA.name}
+                        </h1>
+                        <button
+                            onClick={() => handleNavigate(page === 'home' ? 'resume' : 'home')}
+                            className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-gray-900 font-semibold rounded-full hover:bg-yellow-700 transition duration-300 text-sm shadow-md"
+                        >
+                            {page === 'home' ? (
+                                <>
+                                    <Briefcase size={16}/> Resume
+                                </>
+                            ) : (
+                                <>
+                                    <Home size={16}/> Home
+                                </>
+                            )}
+                        </button>
+                    </nav>
+                </header>
+
+                <main>
+                    {currentPage}
+                </main>
+
+                <footer className="w-full py-4 bg-gray-800 text-center text-gray-500 text-xs border-t border-gray-700">
+                    &copy; {new Date().getFullYear()} {PROFILE_DATA.name}. Built with React and Tailwind CSS.
+                </footer>
+            </div>
+        );
+    };
+
+    // --- Initialize React Application ---
+    // By placing this script at the end of the body, we ensure all dependencies and the #root element are available.
+    const rootElement = document.getElementById('root');
+    if (rootElement) {
+        // Use the globally available ReactDOM and createRoot method for React 18
+        ReactDOM.createRoot(rootElement).render(<App />);
+    }
     </script>
 </body>
 </html>
