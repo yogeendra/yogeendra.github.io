@@ -85,7 +85,7 @@
         // Highlighted skills for the chip display - 'Python' added here
         highlightedSkills: [
             "Java 21", "Python", "Spring Boot", "Microservices", "Oracle DB 19c/23ai", "Kubernetes", "Terraform",
-            "Databricks", "OCI/AWS Cloud", "React","Kafka"
+            "Databricks","Kafka", "OCI/AWS Cloud", "React"
         ],
         experience: [
             {
@@ -270,6 +270,29 @@
         return endLabel ? `${startLabel} — ${endLabel} (${human})` : `${startLabel} (${human})`;
     };
 
+    // --- Highlight Professional Summary Keywords ---
+    const HIGHLIGHT_KEYWORDS = [
+        'Senior Full Stack Developer', 'Backend Developer', 'High-availability',
+        'Java', 'Microservices', 'Spring', 'Jersey', 'Oracle', 'Azure SQL', 'Azure', 'SQL',
+        'PySpark', 'Databricks', 'Spark SQL', 'Big Data', 'Databricks',
+        'DevOps', 'GitHub', 'Gitlab', 'CI/CD', 'Docker', 'Kubernetes', 'SonarQube',
+        'Healthcare', 'Financial Services'
+    ];
+
+    const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    const renderHighlighted = (text) => {
+        if (!text) return text;
+        // build regex with longest-first to prefer multi-word matches
+        const pattern = HIGHLIGHT_KEYWORDS.slice().sort((a, b) => b.length - a.length).map(escapeRegExp).join('|');
+        const splitRegex = new RegExp(`(${pattern})`, 'gi');
+        const exactRegex = new RegExp(`^(${pattern})$`, 'i');
+        const parts = text.split(splitRegex);
+        return parts.map((part, idx) => (
+            exactRegex.test(part) ? <span key={idx} className="text-yellow-600 font-semibold">{part}</span> : part
+        ));
+    };
+
     /**
      * Renders a single skill category with its associated technologies.
      */
@@ -400,7 +423,7 @@
                 <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-4 flex items-center gap-2">
                     <Feather size={24}/> Professional Summary
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{PROFILE_DATA.summary}</p>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{renderHighlighted(PROFILE_DATA.summary)}</p>
             </section>
 
             {/* Skills Section - IMPROVED CATEGORIZATION */}
@@ -508,7 +531,7 @@
                     border-gray-300 dark:border-gray-700">
                     <h2 className="text-xl font-semibold text-yellow-600 dark:text-yellow-300 mb-3">Professional Summary</h2>
                     <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-md">
-                        {PROFILE_DATA.summary}
+                        {renderHighlighted(PROFILE_DATA.summary)}
                     </p>
                 </div>
 
