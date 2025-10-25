@@ -411,6 +411,38 @@
 
         footer p {
             opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .export-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .export-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -714,7 +746,109 @@
 
         <footer>
             <p>&copy; 2025 Yogeendra Rao. All rights reserved.</p>
+            <div class="export-buttons">
+                <button class="export-btn" onclick="exportToPDF()">
+                    <span>📄</span> Export as PDF
+                </button>
+                <button class="export-btn" onclick="exportToDOCX()">
+                    <span>📝</span> Export as DOCX
+                </button>
+            </div>
         </footer>
     </div>
+
+    <script>
+        function exportToPDF() {
+            window.print();
+        }
+
+        async function exportToDOCX() {
+            // Get all the content
+            const name = "Yogeendra Rao";
+            const title = "Progressive Software Developer | 10+ Years Experience";
+            const email = "yogeendra.r@gmail.com";
+            const phone = "+91 9902901078";
+            const linkedin = "http://www.linkedin.com/in/yogeendrarao";
+            
+            const summary = document.querySelector('.summary').textContent.trim();
+            
+            // Build text content for download
+            let docContent = `${name}\n${title}\n\n`;
+            docContent += `Contact Information:\n`;
+            docContent += `Email: ${email}\n`;
+            docContent += `Phone: ${phone}\n`;
+            docContent += `LinkedIn: ${linkedin}\n\n`;
+            docContent += `PROFESSIONAL SUMMARY\n${summary}\n\n`;
+            
+            // Add Skills
+            docContent += `SKILLS\n`;
+            const skills = document.querySelectorAll('.skill-category');
+            skills.forEach(skill => {
+                const title = skill.querySelector('h3').textContent;
+                const content = skill.querySelector('p').textContent;
+                docContent += `${title}: ${content}\n`;
+            });
+            docContent += `\n`;
+            
+            // Add Experience
+            docContent += `EXPERIENCE\n`;
+            const experiences = document.querySelectorAll('.experience-item');
+            experiences.forEach(exp => {
+                const company = exp.querySelector('h3').textContent;
+                const role = exp.querySelector('.role').textContent;
+                const duration = exp.querySelector('.duration').textContent;
+                docContent += `\n${company}\n${role}\n${duration}\n`;
+            });
+            docContent += `\n`;
+            
+            // Add Projects
+            docContent += `KEY PROJECTS\n`;
+            const projects = document.querySelectorAll('.project-item');
+            projects.forEach(project => {
+                const title = project.querySelector('h3').textContent;
+                const meta = project.querySelector('.project-meta').textContent;
+                const bullets = Array.from(project.querySelectorAll('li')).map(li => `• ${li.textContent}`).join('\n');
+                docContent += `\n${title}\n${meta}\n${bullets}\n`;
+            });
+            docContent += `\n`;
+            
+            // Add Education
+            docContent += `EDUCATION\n`;
+            const education = document.querySelector('.education-item');
+            docContent += `${education.querySelector('h3').textContent}\n`;
+            docContent += `${education.querySelector('p').textContent}\n\n`;
+            
+            // Add Certifications
+            docContent += `CERTIFICATIONS\n`;
+            const certs = document.querySelectorAll('.cert-item');
+            certs.forEach(cert => {
+                const certName = cert.querySelector('h3').textContent;
+                docContent += `• ${certName}\n`;
+            });
+            docContent += `\n`;
+            
+            // Add Awards
+            docContent += `AWARDS\n`;
+            const awards = document.querySelectorAll('.award-item');
+            awards.forEach(award => {
+                const title = award.querySelector('h3').textContent;
+                const details = award.querySelector('p').textContent;
+                docContent += `• ${title} - ${details}\n`;
+            });
+            
+            // Create and download the file
+            const blob = new Blob([docContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Yogeendra-Rao-Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            alert('Resume exported as TXT file. For proper DOCX format, please use the PDF export (Print) and convert using an online tool, or copy the content into Microsoft Word.');
+        }
+    </script>
 </body>
 </html>
